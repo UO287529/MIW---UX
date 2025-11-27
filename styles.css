@@ -1,0 +1,288 @@
+/* Especificidad: 001 */
+html {
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+body {
+    font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
+    margin: 0;
+    padding: 0 0 3rem 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 50%, #ecfdf5 100%);
+    color: #1f2933;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: 1.7;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001, 001, 001, 001, 001 */
+header, nav, main, aside, footer {
+    width: min(100% - 3rem, 68rem);
+    margin-inline: auto;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+header {
+    text-align: center;
+    padding: clamp(2rem, 4vw, 3rem) 1.5rem clamp(1.25rem, 3vw, 2rem) 1.5rem;
+    color: #2563eb;
+}
+
+/* Especificidad: 002 */
+nav ul {
+    list-style: none;
+    padding: 0.75rem;
+    margin: 1.5rem auto 2.5rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #ffffffcc; /* 80% */
+    backdrop-filter: blur(0.5rem);
+    border-radius: 999rem;
+    box-shadow: 0 1.25rem 2.8125rem #0f172a1f; /* 12% */
+    border: 0.0625rem solid #e5e7eb;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 002 */
+nav a {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999rem;
+    position: relative;
+    transition: color 200ms ease, transform 200ms ease;
+}
+
+/* Especificidad: 012, 012 */
+nav a:hover,
+nav a:focus {
+    color: #1d4ed8;
+    transform: translateY(-0.125rem);
+}
+
+/* Especificidad: 001 */
+main {
+    background-color: #ffffff;
+    margin: 0 auto 3rem auto;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 1.5rem;
+    border: 0.0625rem solid #e5e7eb; /* caja visible */
+    box-shadow: 0 1.25rem 2.8125rem #0f172a1f;
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 3rem);
+}
+
+/* Especificidad: 001 */
+section {
+    margin: 0;
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #2563eb0f, #10b9810f); /* 6% */
+    box-shadow: inset 0 0.0625rem 0 #ffffff40; /* 25% */
+    border: 0.0625rem solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001, 001, 001 */
+h1,
+h2,
+h3 {
+    color: #1f2933;
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+/* Especificidad: 001 */
+figure {
+    margin: 2rem auto;
+    text-align: center;
+    background-color: #ffffffe6; /* 90% */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1.125rem 1.875rem #0f172a14; /* 8% */
+    border: 0.0625rem solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.75rem 1.5rem #0f172a26; /* 15% */
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+figcaption {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-top: 1rem;
+}
+
+/* Especificidad: 001 */
+video {
+    max-width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1.75rem #0f172a1f; /* 12% */
+    border: 0.0625rem solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+aside {
+    margin: 0 auto 3rem auto;
+    background-color: #fffffff2; /* 95% */
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: 1.5rem;
+    box-shadow: 0 1.25rem 2.8125rem #0f172a1f;
+    border: 0.0625rem solid #e5e7eb;
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Especificidad: 001 */
+footer {
+    text-align: center;
+    padding: 2.5rem 1rem 1rem 1rem;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* Especificidad: 001 */
+ol {
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+blockquote {
+    font-style: italic;
+    border-left: 0.35rem solid #10b981;
+    padding-left: 1.25rem;
+    color: #1f2933;
+    background-color: #10b98114; /* 8% */
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+form {
+    display: grid;
+    gap: 1.25rem;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 001 */
+label {
+    font-weight: 600;
+    color: #1f2933;
+}
+
+/* Especificidad: 001, 001 */
+input,
+textarea {
+    padding: 0.75rem 1rem;
+    border: 0.0625rem solid #94a3b880; /* 50% */
+    border-radius: 0.5rem;
+    background-color: #ffffffe6; /* 90% */
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 011, 011 */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.1875rem #2563eb33;
+}
+
+/* Especificidad: 001 */
+button {
+    background: linear-gradient(135deg, #2563eb, #10b981);
+    color: #ffffff;
+    padding: 0.85rem 1.75rem;
+    border: none;
+    border-radius: 999rem;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 1.125rem 1.875rem #10b98140;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    box-sizing: border-box;
+}
+
+/* Especificidad: 011 */
+button:hover {
+    transform: translateY(-0.125rem);
+    box-shadow: 0 1.5625rem 2.5rem #2563eb40;
+}
+
+@media (max-width: 56.25em) {
+    /* Especificidad: 001 */
+    main {
+        padding: 2.5rem;
+    }
+
+    /* Especificidad: 001 */
+    section {
+        padding: 1.75rem;
+    }
+
+    /* Especificidad: 002 */
+    figure img {
+        max-width: 80%;
+    }
+
+    /* Especificidad: 003 */
+    article figure img {
+        max-width: 60%;
+    }
+}
+
+@media (max-width: 40em) {
+    /* Especificidad: 001 */
+    header {
+        padding: 2.5rem 1rem 1.5rem 1rem;
+    }
+
+    /* Especificidad: 002 */
+    nav ul {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Especificidad: 002 */
+    nav a {
+        padding: 0.45rem 1rem;
+    }
+
+    /* Especificidad: 001 */
+    main {
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    /* Especificidad: 001 */
+    section {
+        padding: 1.5rem;
+    }
+
+    /* Especificidad: 001 */
+    aside {
+        padding: 2rem;
+    }
+}
