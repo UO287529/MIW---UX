@@ -49,18 +49,38 @@
             position: relative;
         }
 
-        /* WebGazer video positioning */
+        /* WebGazer video positioning - in sidebar area */
         #webgazerVideoContainer {
             position: fixed !important;
-            top: 60px !important;
-            right: 16px !important;
-            left: auto !important;
-            width: 160px !important;
-            height: 120px !important;
-            z-index: 500 !important;
+            top: 250px !important;
+            left: 16px !important;
+            right: auto !important;
+            width: 288px !important;
+            height: 180px !important;
+            z-index: 1001 !important;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--primary);
+        }
+
+        /* Click overlay for tracking */
+        #clickOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            cursor: crosshair;
+        }
+
+        #clickOverlay.recording {
+            pointer-events: auto;
+        }
+
+        #clickOverlay:not(.recording) {
+            pointer-events: none;
         }
 
         #webgazerVideoFeed {
@@ -598,6 +618,7 @@
         <!-- Content Frame -->
         <div class="iframe-container" id="iframeContainer">
             <iframe id="targetFrame" src="index.html"></iframe>
+            <div id="clickOverlay"></div>
             <div id="heatmapContainer"></div>
             <div id="clickHeatmapContainer"></div>
             <canvas id="gazeOverlay"></canvas>
@@ -797,10 +818,12 @@
                 }
             });
 
-            // Set up click tracking
-            const container = document.getElementById('iframeContainer');
-            container.onclick = function (e) {
+            // Set up click tracking on the overlay
+            const overlay = document.getElementById('clickOverlay');
+            overlay.classList.add('recording');
+            overlay.onclick = function (e) {
                 if (!isRecording) return;
+                const container = document.getElementById('iframeContainer');
                 const rect = container.getBoundingClientRect();
                 clickBuffer.push({
                     x: e.clientX - rect.left,
@@ -809,6 +832,7 @@
                     page: document.getElementById('pageSelect').value
                 });
                 document.getElementById('clickCount').textContent = clickBuffer.length;
+                console.log('Click recorded at', e.clientX - rect.left, e.clientY - rect.top);
             };
 
             isRecording = true;
@@ -823,6 +847,9 @@
             isRecording = false;
             webgazer.pause();
             webgazer.showVideoPreview(false);
+
+            // Disable click overlay
+            document.getElementById('clickOverlay').classList.remove('recording');
 
             document.getElementById('gazeDot').style.display = 'none';
             document.getElementById('statusDot').classList.remove('recording');
