@@ -45,6 +45,37 @@
             padding: 16px;
             gap: 16px;
             overflow-y: auto;
+            z-index: 1000;
+            position: relative;
+        }
+
+        /* WebGazer video positioning */
+        #webgazerVideoContainer {
+            position: fixed !important;
+            top: 60px !important;
+            right: 16px !important;
+            left: auto !important;
+            width: 160px !important;
+            height: 120px !important;
+            z-index: 500 !important;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        #webgazerVideoFeed {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+        }
+
+        #webgazerFaceOverlay {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        #webgazerFaceFeedbackBox {
+            display: none !important;
         }
 
         .sidebar h1 {
@@ -585,24 +616,28 @@
             document.getElementById('btnStartStop').classList.add('success');
 
             // Save session
+            console.log('Stopping recording. Gaze buffer:', gazeBuffer.length, 'Click buffer:', clickBuffer.length);
+
             if (gazeBuffer.length > 0 || clickBuffer.length > 0) {
                 const sessionId = 'session_' + new Date().toISOString().replace(/[:.]/g, '-');
                 const session = {
                     id: sessionId,
                     createdAt: new Date().toISOString(),
                     duration: Date.now() - sessionStartTime,
-                    gazePoints: gazeBuffer,
-                    clicks: clickBuffer
+                    gazePoints: [...gazeBuffer],
+                    clicks: [...clickBuffer]
                 };
 
+                console.log('Saving session:', sessionId, session);
                 sessions[sessionId] = session;
                 saveSessions();
+                console.log('Sessions after save:', sessions);
                 renderSessionList();
                 selectSession(sessionId);
 
                 alert(`Sesión guardada: ${gazeBuffer.length} puntos de mirada, ${clickBuffer.length} clics.`);
             } else {
-                alert('No se registraron datos en esta sesión.');
+                alert('No se registraron datos en esta sesión. Asegúrate de que WebGazer está calibrado y detecta tu cara.');
             }
         }
 
