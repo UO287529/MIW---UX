@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="styles.css">
   <meta name="description"
     content="Página personal de Pelayo Rojas Íñigo, estudiante de máster en Ingeniería Web en la Universidad de Oviedo.">
-  <script src="realeye_sdk.js"></script>
 </head>
 
 <body>
@@ -53,6 +52,19 @@
   <footer>
     <p>© 2025 Pelayo Rojas Íñigo</p>
   </footer>
+  <script type="module">
+
+    import EmbeddedPageSdk from "https://app.realeye.io/sdk/js/testRunnerEmbeddableSdk-1.7.1.js"
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const debugMode = false;
+      const stimulusId = null; // Or Stimulus/Item UUID from RealEye Study, e.g. "61560b76-3d31-4f0e-b530-55bd8709aadb"
+      const forceRun = false;
+
+      const reSdk = new EmbeddedPageSdk(debugMode, stimulusId, forceRun)
+    });
+
+  </script>
 </body>
 
 </html>
