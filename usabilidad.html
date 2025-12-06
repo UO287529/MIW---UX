@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Usabilidad - Eye Tracking y Heatmaps</title>
+    <script src="https://webgazer.cs.brown.edu/webgazer.js"></script>
+    <script src="https://unpkg.com/heatmap.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: var(--bg-card);
+            border-right: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar h1 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar h1::before {
+            content: '👁️';
+        }
+
+        /* Session Controls */
+        .control-group {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .control-group h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 0.875rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            animation: none;
+        }
+
+        .status-dot.recording {
+            background: var(--danger);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.danger {
+            background: var(--danger);
+        }
+
+        .btn.danger:hover {
+            background: #dc2626;
+        }
+
+        .btn.success {
+            background: var(--success);
+        }
+
+        .btn.success:hover {
+            background: #16a34a;
+        }
+
+        .btn.secondary {
+            background: #475569;
+        }
+
+        .btn.secondary:hover {
+            background: #64748b;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-row .btn {
+            flex: 1;
+        }
+
+        /* Session List */
+        .session-list {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .session-item {
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 4px;
+            transition: all 0.15s;
+            font-size: 0.8rem;
+        }
+
+        .session-item:hover {
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .session-item.selected {
+            background: var(--primary);
+        }
+
+        .session-item .name {
+            font-weight: 600;
+        }
+
+        .session-item .meta {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            margin-top: 2px;
+        }
+
+        .session-item.selected .meta {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .toolbar {
+            background: var(--bg-card);
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .toolbar select {
+            background: #0f172a;
+            color: var(--text);
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.875rem;
+        }
+
+        .iframe-container {
+            flex: 1;
+            position: relative;
+            background: white;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Overlay layers */
+        #gazeOverlay,
+        #heatmapContainer,
+        #clickHeatmapContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #gazeOverlay {
+            z-index: 100;
+        }
+
+        #heatmapContainer {
+            z-index: 99;
+        }
+
+        #clickHeatmapContainer {
+            z-index: 98;
+        }
+
+        .gaze-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.7);
+            border: 2px solid red;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            display: none;
+        }
+
+        /* Playback Controls */
+        .playback-bar {
+            background: var(--bg-card);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid #334155;
+        }
+
+        .playback-bar input[type="range"] {
+            flex: 1;
+            accent-color: var(--primary);
+        }
+
+        .playback-time {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            min-width: 100px;
+        }
+
+        /* File input styling */
+        .file-input-wrapper {
+            position: relative;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.75rem;
+        }
+
+        .stat {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+        }
+
+        /* Toggle buttons */
+        .toggle-group {
+            display: flex;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.15s;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .toggle-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h1>Test de Usabilidad</h1>
+
+        <!-- Recording Controls -->
+        <div class="control-group">
+            <h3>📹 Grabación</h3>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Listo para grabar</span>
+            </div>
+            <div class="stats" id="liveStats">
+                <div class="stat">
+                    <div class="stat-value" id="gazeCount">0</div>
+                    <div class="stat-label">Puntos mirada</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="clickCount">0</div>
+                    <div class="stat-label">Clics</div>
+                </div>
+            </div>
+            <div style="margin-top: 12px;">
+                <button class="btn success" id="btnStartStop" onclick="toggleRecording()">
+                    ▶ Iniciar Grabación
+                </button>
+            </div>
+        </div>
+
+        <!-- Session List -->
+        <div class="control-group" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+            <h3>📁 Sesiones Guardadas</h3>
+            <div class="session-list" id="sessionList">
+                <p style="color: var(--text-muted); font-size: 0.8rem; padding: 8px;">No hay sesiones guardadas</p>
+            </div>
+            <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                <div class="btn-row">
+                    <button class="btn secondary" onclick="downloadSession()" id="btnDownload" disabled>
+                        💾 Descargar
+                    </button>
+                    <button class="btn danger" onclick="deleteSession()" id="btnDelete" disabled>
+                        🗑️ Borrar
+                    </button>
+                </div>
+                <div class="file-input-wrapper">
+                    <button class="btn secondary">📂 Cargar archivo...</button>
+                    <input type="file" accept=".json" onchange="loadSessionFile(event)">
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <span style="color: var(--text-muted); font-size: 0.8rem;">Página:</span>
+            <select id="pageSelect" onchange="changePage()">
+                <option value="index.html">Inicio</option>
+                <option value="aficiones.html">Aficiones</option>
+                <option value="portfolio.html">Portfolio</option>
+                <option value="contacto.html">Contacto</option>
+            </select>
+            <div style="flex: 1;"></div>
+            <div class="toggle-group">
+                <button class="toggle-btn active" id="toggleGaze" onclick="toggleLayer('gaze')">👁️ Mirada</button>
+                <button class="toggle-btn active" id="toggleGazeHeat" onclick="toggleLayer('gazeHeat')">🔥 Heatmap
+                    Mirada</button>
+                <button class="toggle-btn active" id="toggleClickHeat" onclick="toggleLayer('clickHeat')">🖱️ Heatmap
+                    Clics</button>
+            </div>
+        </div>
+
+        <!-- Content Frame -->
+        <div class="iframe-container" id="iframeContainer">
+            <iframe id="targetFrame" src="index.html"></iframe>
+            <canvas id="gazeOverlay"></canvas>
+            <div id="heatmapContainer"></div>
+            <div id="clickHeatmapContainer"></div>
+            <div class="gaze-dot" id="gazeDot"></div>
+        </div>
+
+        <!-- Playback Bar -->
+        <div class="playback-bar" id="playbackBar" style="display: none;">
+            <button class="btn" style="width: auto; padding: 8px 16px;" id="btnPlay"
+                onclick="togglePlayback()">▶</button>
+            <input type="range" id="playbackSlider" min="0" max="100" value="0" oninput="seekPlayback(this.value)">
+            <span class="playback-time" id="playbackTime">00:00 / 00:00</span>
+            <select id="playbackSpeed" onchange="setPlaybackSpeed(this.value)"
+                style="background: #0f172a; color: var(--text); border: 1px solid #334155; border-radius: 4px; padding: 4px;">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+            </select>
+        </div>
+    </main>
+
+    <script>
+        // ========== State ==========
+        let isRecording = false;
+        let isPlaying = false;
+        let currentSession = null;
+        let selectedSessionKey = null;
+        let sessions = {};
+
+        let gazeBuffer = [];
+        let clickBuffer = [];
+        let sessionStartTime = null;
+
+        let playbackIndex = 0;
+        let playbackSpeed = 1;
+        let playbackAnimationId = null;
+
+        let gazeHeatmap = null;
+        let clickHeatmap = null;
+
+        let layers = { gaze: true, gazeHeat: true, clickHeat: true };
+
+        // ========== Initialization ==========
+        window.addEventListener('load', () => {
+            loadSessions();
+            renderSessionList();
+            setupIframeClickTracking();
+            resizeOverlays();
+        });
+
+        window.addEventListener('resize', resizeOverlays);
+
+        function resizeOverlays() {
+            const container = document.getElementById('iframeContainer');
+            const canvas = document.getElementById('gazeOverlay');
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+        }
+
+        // ========== Recording ==========
+        async function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        async function startRecording() {
+            try {
+                gazeBuffer = [];
+                clickBuffer = [];
+                sessionStartTime = Date.now();
+
+                await webgazer.setRegression('ridge')
+                    .setGazeListener((data, timestamp) => {
+                        if (!data || !isRecording) return;
+
+                        const container = document.getElementById('iframeContainer');
+                        const rect = container.getBoundingClientRect();
+
+                        // Adjust coordinates relative to iframe
+                        const x = data.x - rect.left;
+                        const y = data.y - rect.top;
+
+                        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                            gazeBuffer.push({
+                                x: x,
+                                y: y,
+                                t: Date.now() - sessionStartTime,
+                                page: document.getElementById('pageSelect').value
+                            });
+
+                            // Update live dot
+                            const dot = document.getElementById('gazeDot');
+                            dot.style.display = 'block';
+                            dot.style.left = x + 'px';
+                            dot.style.top = y + 'px';
+
+                            document.getElementById('gazeCount').textContent = gazeBuffer.length;
+                        }
+                    })
+                    .begin();
+
+                webgazer.showVideoPreview(true).showPredictionPoints(false);
+
+                isRecording = true;
+                document.getElementById('statusDot').classList.add('recording');
+                document.getElementById('statusText').textContent = 'Grabando...';
+                document.getElementById('btnStartStop').innerHTML = '⏹ Finalizar y Guardar';
+                document.getElementById('btnStartStop').classList.remove('success');
+                document.getElementById('btnStartStop').classList.add('danger');
+
+            } catch (e) {
+                console.error('Error starting WebGazer:', e);
+                alert('Error al iniciar el eye tracking. Asegúrate de permitir acceso a la cámara.');
+            }
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            webgazer.pause();
+            webgazer.showVideoPreview(false);
+
+            document.getElementById('gazeDot').style.display = 'none';
+            document.getElementById('statusDot').classList.remove('recording');
+            document.getElementById('statusText').textContent = 'Listo para grabar';
+            document.getElementById('btnStartStop').innerHTML = '▶ Iniciar Grabación';
+            document.getElementById('btnStartStop').classList.remove('danger');
+            document.getElementById('btnStartStop').classList.add('success');
+
+            // Save session
+            if (gazeBuffer.length > 0 || clickBuffer.length > 0) {
+                const sessionId = 'session_' + new Date().toISOString().replace(/[:.]/g, '-');
+                const session = {
+                    id: sessionId,
+                    createdAt: new Date().toISOString(),
+                    duration: Date.now() - sessionStartTime,
+                    gazePoints: gazeBuffer,
+                    clicks: clickBuffer
+                };
+
+                sessions[sessionId] = session;
+                saveSessions();
+                renderSessionList();
+                selectSession(sessionId);
+
+                alert(`Sesión guardada: ${gazeBuffer.length} puntos de mirada, ${clickBuffer.length} clics.`);
+            } else {
+                alert('No se registraron datos en esta sesión.');
+            }
+        }
+
+        // ========== Click Tracking ==========
+        function setupIframeClickTracking() {
+            const iframe = document.getElementById('targetFrame');
+            const container = document.getElementById('iframeContainer');
+
+            // Track clicks on the iframe container (overlay)
+            container.addEventListener('click', (e) => {
+                if (!isRecording) return;
+
+                const rect = container.getBoundingClientRect();
+                clickBuffer.push({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                    t: Date.now() - sessionStartTime,
+                    page: document.getElementById('pageSelect').value
+                });
+
+                document.getElementById('clickCount').textContent = clickBuffer.length;
+            }, true);
+        }
+
+        // ========== Session Management ==========
+        function loadSessions() {
+            try {
+                sessions = JSON.parse(localStorage.getItem('usability_sessions') || '{}');
+            } catch (e) {
+                sessions = {};
+            }
+        }
+
+        function saveSessions() {
+            localStorage.setItem('usability_sessions', JSON.stringify(sessions));
+        }
+
+        function renderSessionList() {
+            const list = document.getElementById('sessionList');
+            const keys = Object.keys(sessions).sort().reverse();
+
+            if (keys.length === 0) {
+                list.innerHTML = '<p style="color: var(--text-muted); font-size: 0.8rem; padding: 8px;">No hay sesiones guardadas</p>';
+                return;
+            }
+
+            list.innerHTML = keys.map(key => {
+                const s = sessions[key];
+                const gazeCount = s.gazePoints ? s.gazePoints.length : 0;
+                const clickCount = s.clicks ? s.clicks.length : 0;
+                const duration = s.duration ? Math.round(s.duration / 1000) : 0;
+                const date = new Date(s.createdAt).toLocaleString('es-ES');
+
+                return `
+                    <div class="session-item ${key === selectedSessionKey ? 'selected' : ''}" 
+                         onclick="selectSession('${key}')">
+                        <div class="name">${key.split('_').slice(1).join('_')}</div>
+                        <div class="meta">${gazeCount} miradas, ${clickCount} clics • ${duration}s • ${date}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectSession(key) {
+            selectedSessionKey = key;
+            currentSession = sessions[key];
+            renderSessionList();
+
+            document.getElementById('btnDownload').disabled = false;
+            document.getElementById('btnDelete').disabled = false;
+            document.getElementById('playbackBar').style.display = 'flex';
+
+            // Reset playback
+            stopPlayback();
+            playbackIndex = 0;
+            updatePlaybackUI();
+
+            // Render heatmaps
+            renderHeatmaps();
+        }
+
+        function deleteSession() {
+            if (!selectedSessionKey) return;
+            if (!confirm('¿Seguro que quieres borrar esta sesión?')) return;
+
+            delete sessions[selectedSessionKey];
+            saveSessions();
+            selectedSessionKey = null;
+            currentSession = null;
+            renderSessionList();
+            clearVisualization();
+
+            document.getElementById('btnDownload').disabled = true;
+            document.getElementById('btnDelete').disabled = true;
+            document.getElementById('playbackBar').style.display = 'none';
+        }
+
+        function downloadSession() {
+            if (!currentSession) return;
+
+            const blob = new Blob([JSON.stringify(currentSession, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentSession.id + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadSessionFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const session = JSON.parse(e.target.result);
+                    if (!session.id) session.id = 'imported_' + Date.now();
+                    sessions[session.id] = session;
+                    saveSessions();
+                    renderSessionList();
+                    selectSession(session.id);
+                    alert('Sesión cargada correctamente.');
+                } catch (err) {
+                    alert('Error al cargar el archivo: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ========== Visualization ==========
+        function renderHeatmaps() {
+            if (!currentSession) return;
+
+            const container = document.getElementById('heatmapContainer');
+            const clickContainer = document.getElementById('clickHeatmapContainer');
+
+            container.innerHTML = '';
+            clickContainer.innerHTML = '';
+
+            // Gaze heatmap
+            if (currentSession.gazePoints && currentSession.gazePoints.length > 0) {
+                gazeHeatmap = h337.create({ container: container, radius: 30, maxOpacity: 0.6 });
+                const gazeData = currentSession.gazePoints.map(p => ({ x: Math.round(p.x), y: Math.round(p.y), value: 1 }));
+                gazeHeatmap.setData({ max: 10, data: gazeData });
+            }
+
+            // Click heatmap
+            if (currentSession.clicks && currentSession.clicks.length > 0) {
+                clickHeatmap = h337.create({
+                    container: clickContainer,
+                    radius: 50,
+                    maxOpacity: 0.8,
+                    gradient: { 0.4: 'blue', 0.6: 'cyan', 0.7: 'lime', 0.8: 'yellow', 1: 'red' }
+                });
+                const clickData = currentSession.clicks.map(p => ({ x: Math.round(p.x), y: Math.round(p.y), value: 3 }));
+                clickHeatmap.setData({ max: 10, data: clickData });
+            }
+
+            updateLayerVisibility();
+        }
+
+        function clearVisualization() {
+            const canvas = document.getElementById('gazeOverlay');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            document.getElementById('heatmapContainer').innerHTML = '';
+            document.getElementById('clickHeatmapContainer').innerHTML = '';
+        }
+
+        function toggleLayer(layer) {
+            layers[layer] = !layers[layer];
+            document.getElementById('toggle' + layer.charAt(0).toUpperCase() + layer.slice(1))
+                .classList.toggle('active', layers[layer]);
+            updateLayerVisibility();
+        }
+
+        function updateLayerVisibility() {
+            document.getElementById('gazeOverlay').style.opacity = layers.gaze ? 1 : 0;
+            document.getElementById('heatmapContainer').style.opacity = layers.gazeHeat ? 1 : 0;
+            document.getElementById('clickHeatmapContainer').style.opacity = layers.clickHeat ? 1 : 0;
+        }
+
+        // ========== Playback ==========
+        function togglePlayback() {
+            if (isPlaying) {
+                stopPlayback();
+            } else {
+                startPlayback();
+            }
+        }
+
+        function startPlayback() {
+            if (!currentSession || !currentSession.gazePoints || currentSession.gazePoints.length === 0) return;
+
+            isPlaying = true;
+            document.getElementById('btnPlay').textContent = '⏸';
+
+            const canvas = document.getElementById('gazeOverlay');
+            const ctx = canvas.getContext('2d');
+            const points = currentSession.gazePoints;
+
+            let lastTime = performance.now();
+
+            function animate(currentTime) {
+                if (!isPlaying) return;
+
+                const deltaTime = (currentTime - lastTime) * playbackSpeed;
+                lastTime = currentTime;
+
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw trail
+                const trailLength = 50;
+                const startIdx = Math.max(0, playbackIndex - trailLength);
+
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
+                ctx.lineWidth = 2;
+
+                for (let i = startIdx; i <= playbackIndex && i < points.length; i++) {
+                    const p = points[i];
+                    if (i === startIdx) {
+                        ctx.moveTo(p.x, p.y);
+                    } else {
+                        ctx.lineTo(p.x, p.y);
+                    }
+                }
+                ctx.stroke();
+
+                // Draw current point
+                if (playbackIndex < points.length) {
+                    const current = points[playbackIndex];
+                    ctx.beginPath();
+                    ctx.arc(current.x, current.y, 8, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
+                    ctx.fill();
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+
+                // Advance playback
+                if (playbackIndex < points.length - 1) {
+                    const currentPoint = points[playbackIndex];
+                    const nextPoint = points[playbackIndex + 1];
+                    const timeDiff = nextPoint.t - currentPoint.t;
+
+                    if (deltaTime >= timeDiff / playbackSpeed) {
+                        playbackIndex++;
+                    }
+                } else {
+                    stopPlayback();
+                    return;
+                }
+
+                updatePlaybackUI();
+                playbackAnimationId = requestAnimationFrame(animate);
+            }
+
+            playbackAnimationId = requestAnimationFrame(animate);
+        }
+
+        function stopPlayback() {
+            isPlaying = false;
+            document.getElementById('btnPlay').textContent = '▶';
+            if (playbackAnimationId) {
+                cancelAnimationFrame(playbackAnimationId);
+                playbackAnimationId = null;
+            }
+        }
+
+        function seekPlayback(value) {
+            if (!currentSession || !currentSession.gazePoints) return;
+
+            const points = currentSession.gazePoints;
+            playbackIndex = Math.floor((value / 100) * (points.length - 1));
+            updatePlaybackUI();
+
+            // Redraw current frame
+            if (!isPlaying) {
+                const canvas = document.getElementById('gazeOverlay');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                if (playbackIndex < points.length) {
+                    const p = points[playbackIndex];
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 8, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
+                    ctx.fill();
+                }
+            }
+        }
+
+        function setPlaybackSpeed(speed) {
+            playbackSpeed = parseFloat(speed);
+        }
+
+        function updatePlaybackUI() {
+            if (!currentSession || !currentSession.gazePoints) return;
+
+            const points = currentSession.gazePoints;
+            const progress = (playbackIndex / (points.length - 1)) * 100;
+            document.getElementById('playbackSlider').value = progress;
+
+            const currentTime = points[playbackIndex] ? points[playbackIndex].t : 0;
+            const totalTime = points[points.length - 1] ? points[points.length - 1].t : 0;
+
+            document.getElementById('playbackTime').textContent =
+                formatTime(currentTime) + ' / ' + formatTime(totalTime);
+        }
+
+        function formatTime(ms) {
+            const seconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+        }
+
+        // ========== Page Navigation ==========
+        function changePage() {
+            const page = document.getElementById('pageSelect').value;
+            document.getElementById('targetFrame').src = page;
+        }
+    </script>
+</body>
+
+</html>
