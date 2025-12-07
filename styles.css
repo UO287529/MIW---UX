@@ -19,7 +19,11 @@ body {
 }
 
 /* Especificidad: 001, 001, 001, 001, 001 */
-header, nav, main, aside, footer {
+header,
+nav,
+main,
+aside,
+footer {
     width: min(100% - 3rem, 68rem);
     margin-inline: auto;
     box-sizing: border-box;
@@ -40,10 +44,12 @@ nav ul {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    background-color: #ffffffcc; /* 80% */
+    background-color: #ffffffcc;
+    /* 80% */
     backdrop-filter: blur(0.5rem);
     border-radius: 999rem;
-    box-shadow: 0 1.25rem 2.8125rem #0f172a1f; /* 12% */
+    box-shadow: 0 1.25rem 2.8125rem #0f172a1f;
+    /* 12% */
     border: 0.0625rem solid #e5e7eb;
     max-width: 100%;
     box-sizing: border-box;
@@ -67,13 +73,57 @@ nav a:focus {
     transform: translateY(-0.125rem);
 }
 
+/* Especificidad: 011 - Enlace de página activa */
+nav a.activa {
+    background: linear-gradient(135deg, #2563eb, #10b981);
+    color: #ffffff;
+    box-shadow: 0 0.25rem 0.75rem #2563eb40;
+}
+
+/* Especificidad: 021 */
+nav a.activa:hover,
+nav a.activa:focus {
+    color: #ffffff;
+    transform: translateY(-0.125rem);
+}
+
+/* Especificidad: 002 - Botón toggle del buscador en navbar */
+nav button {
+    background: transparent;
+    border: 0.125rem solid #2563eb;
+    color: #2563eb;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 999rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+/* Especificidad: 012 */
+nav button:hover,
+nav button:focus {
+    background: linear-gradient(135deg, #2563eb, #10b981);
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-0.125rem);
+}
+
+/* Especificidad: 012 - Botón toggle activo (buscador visible) */
+nav button[aria-expanded="true"] {
+    background: linear-gradient(135deg, #2563eb, #10b981);
+    color: #ffffff;
+    border-color: transparent;
+}
+
 /* Especificidad: 001 */
 main {
     background-color: #ffffff;
     margin: 0 auto 3rem auto;
     padding: clamp(1.5rem, 4vw, 3rem);
     border-radius: 1.5rem;
-    border: 0.0625rem solid #e5e7eb; /* caja visible */
+    border: 0.0625rem solid #e5e7eb;
+    /* caja visible */
     box-shadow: 0 1.25rem 2.8125rem #0f172a1f;
     display: grid;
     gap: clamp(1.25rem, 3vw, 3rem);
@@ -84,8 +134,10 @@ section {
     margin: 0;
     padding: clamp(1rem, 3vw, 2rem);
     border-radius: 1rem;
-    background: linear-gradient(145deg, #2563eb0f, #10b9810f); /* 6% */
-    box-shadow: inset 0 0.0625rem 0 #ffffff40; /* 25% */
+    background: linear-gradient(145deg, #2563eb0f, #10b9810f);
+    /* 6% */
+    box-shadow: inset 0 0.0625rem 0 #ffffff40;
+    /* 25% */
     border: 0.0625rem solid #e5e7eb;
     box-sizing: border-box;
 }
@@ -103,10 +155,12 @@ h3 {
 figure {
     margin: 2rem auto;
     text-align: center;
-    background-color: #ffffffe6; /* 90% */
+    background-color: #ffffffe6;
+    /* 90% */
     padding: 1.5rem;
     border-radius: 1rem;
-    box-shadow: 0 1.125rem 1.875rem #0f172a14; /* 8% */
+    box-shadow: 0 1.125rem 1.875rem #0f172a14;
+    /* 8% */
     border: 0.0625rem solid #e5e7eb;
     box-sizing: border-box;
 }
@@ -116,7 +170,8 @@ img {
     max-width: 30%;
     height: auto;
     border-radius: 0.5rem;
-    box-shadow: 0 0.75rem 1.5rem #0f172a26; /* 15% */
+    box-shadow: 0 0.75rem 1.5rem #0f172a26;
+    /* 15% */
     box-sizing: border-box;
 }
 
@@ -131,7 +186,8 @@ figcaption {
 video {
     max-width: 100%;
     border-radius: 1rem;
-    box-shadow: 0 1rem 1.75rem #0f172a1f; /* 12% */
+    box-shadow: 0 1rem 1.75rem #0f172a1f;
+    /* 12% */
     border: 0.0625rem solid #e5e7eb;
     box-sizing: border-box;
 }
@@ -139,7 +195,8 @@ video {
 /* Especificidad: 001 */
 aside {
     margin: 0 auto 3rem auto;
-    background-color: #fffffff2; /* 95% */
+    background-color: #fffffff2;
+    /* 95% */
     padding: clamp(1.5rem, 3vw, 2.5rem);
     border-radius: 1.5rem;
     box-shadow: 0 1.25rem 2.8125rem #0f172a1f;
@@ -156,6 +213,204 @@ footer {
     font-size: 0.95rem;
 }
 
+/* Especificidad: 002 - Navegación de redes sociales en footer */
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Especificidad: 002 */
+footer nav a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 200ms ease;
+}
+
+/* Especificidad: 012 */
+footer nav a:hover {
+    color: #10b981;
+}
+
+/* Especificidad: 002 - Fecha de actualización */
+footer time {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* Especificidad: 002 - Migas de pan */
+header+nav[aria-label] {
+    width: min(100% - 3rem, 68rem);
+    margin: -1rem auto 1.5rem auto;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Especificidad: 003 - Lista de migas */
+header+nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Especificidad: 003 - Elementos de migas */
+header+nav li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Especificidad: 003 - Separador de migas */
+header+nav li:not(:last-child)::after {
+    content: "›";
+    color: #94a3b8;
+    font-weight: bold;
+}
+
+/* Especificidad: 003 */
+header+nav a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+/* Especificidad: 013 */
+header+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Especificidad: 002 - Elemento actual en migas */
+header+nav [aria-current] {
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Especificidad: 002 - Buscador dentro del header */
+header search {
+    display: block;
+    margin-top: 1rem;
+}
+
+/* Especificidad: 003 - Formulario del buscador en header */
+header search form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+/* Especificidad: 003 - Input del buscador en header */
+header search input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 999rem;
+    font-size: 0.9rem;
+}
+
+/* Especificidad: 003 - Botón del buscador en header */
+header search button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* Especificidad: 003 - Botón cerrar del buscador */
+header search button[data-close-search] {
+    background: #ef4444;
+    padding: 0.5rem 0.75rem;
+    min-width: auto;
+}
+
+/* Especificidad: 013 */
+header search button[data-close-search]:hover {
+    background: #dc2626;
+}
+
+/* Especificidad: 001 - Resultados del buscador */
+output {
+    display: block;
+    width: min(100% - 3rem, 68rem);
+    margin: 0 auto 1.5rem auto;
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 0.0625rem solid #e5e7eb;
+    box-shadow: 0 0.5rem 1rem #0f172a0f;
+}
+
+/* Especificidad: 002 - Lista de resultados */
+output ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+/* Especificidad: 002 - Resultado individual */
+output li {
+    padding: 0.75rem;
+    background: linear-gradient(145deg, #2563eb08, #10b98108);
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #e5e7eb;
+}
+
+/* Especificidad: 002 - Enlace de resultado */
+output a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Especificidad: 012 */
+output a:hover {
+    text-decoration: underline;
+}
+
+/* Especificidad: 002 - Texto del resultado */
+output p {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* Especificidad: 002 - Sin resultados */
+output mark {
+    background: #fef3c7;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+/* Especificidad: 012 - Selector de idioma */
+header select {
+    padding: 0.5rem 1rem;
+    border: 0.0625rem solid #e5e7eb;
+    border-radius: 999rem;
+    background: #ffffff;
+    color: #2563eb;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+/* Especificidad: 022 */
+header select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.1875rem #2563eb33;
+}
+
 /* Especificidad: 001 */
 ol {
     padding-left: 1.5rem;
@@ -170,7 +425,8 @@ blockquote {
     border-left: 0.35rem solid #10b981;
     padding-left: 1.25rem;
     color: #1f2933;
-    background-color: #10b98114; /* 8% */
+    background-color: #10b98114;
+    /* 8% */
     border-radius: 0.5rem;
     margin: 2rem 0;
     box-sizing: border-box;
@@ -193,9 +449,11 @@ label {
 input,
 textarea {
     padding: 0.75rem 1rem;
-    border: 0.0625rem solid #94a3b880; /* 50% */
+    border: 0.0625rem solid #94a3b880;
+    /* 50% */
     border-radius: 0.5rem;
-    background-color: #ffffffe6; /* 90% */
+    background-color: #ffffffe6;
+    /* 90% */
     transition: border-color 200ms ease, box-shadow 200ms ease;
     font: inherit;
     box-sizing: border-box;
@@ -231,6 +489,7 @@ button:hover {
 }
 
 @media (max-width: 56.25em) {
+
     /* Especificidad: 001 */
     main {
         padding: 2.5rem;
@@ -253,6 +512,7 @@ button:hover {
 }
 
 @media (max-width: 40em) {
+
     /* Especificidad: 001 */
     header {
         padding: 2.5rem 1rem 1.5rem 1rem;
@@ -285,4 +545,9 @@ button:hover {
     aside {
         padding: 2rem;
     }
+}
+
+/* Especificidad: 010 */
+[hidden] {
+    display: none;
 }

@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="styles.css">
     <meta name="description"
         content="Portfolio de Pelayo Rojas Íñigo con enlaces y descripción de proyectos en GitHub.">
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "uhe7plyk8m");
+    </script>
+    <script src="i18n.js" defer></script>
+    <script src="buscador.js" defer></script>
 </head>
 
 <body>
@@ -15,18 +24,43 @@
         <h1>Pelayo Rojas Íñigo</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="aficiones.html">Aficiones</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="index.html" data-i18n="nav.inicio">Inicio</a></li>
+                <li><a href="aficiones.html" data-i18n="nav.aficiones">Aficiones</a></li>
+                <li><a href="portfolio.html" class="activa" aria-current="page" data-i18n="nav.portfolio">Portfolio</a>
+                </li>
+                <li><a href="contacto.html" data-i18n="nav.contacto">Contacto</a></li>
+                <li><button type="button" aria-expanded="false" aria-controls="buscador-form" data-toggle-search>🔍
+                        <span data-i18n="buscar.boton">Buscar</span></button></li>
             </ul>
         </nav>
+        <search role="search" hidden>
+            <form id="buscador-form">
+                <label for="busqueda" hidden>Buscar</label>
+                <input type="search" id="busqueda" name="q" placeholder="Buscar en el sitio..."
+                    data-i18n="buscar.placeholder">
+                <button type="submit" data-i18n="buscar.boton">Buscar</button>
+                <button type="button" data-close-search aria-label="Cerrar buscador">✕</button>
+            </form>
+        </search>
+        <label for="idioma" hidden>Idioma</label>
+        <select id="idioma" aria-label="Seleccionar idioma">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
     </header>
+
+    <nav aria-label="Migas de pan">
+        <ol>
+            <li><a href="index.html" data-i18n="migas.inicio">Inicio</a></li>
+            <li aria-current="page" data-i18n="nav.portfolio">Portfolio</li>
+        </ol>
+    </nav>
+    <output aria-live="polite" aria-label="Resultados de búsqueda" hidden></output>
 
     <main>
         <section>
-            <h2>Portfolio</h2>
-            <p>
+            <h2 data-i18n="portfolio.titulo">Portfolio</h2>
+            <p data-i18n="portfolio.intro">
                 A continuación encontrarás una selección de perfiles y organizaciones en GitHub donde publico y colaboro
                 en proyectos.
                 Cada bloque incluye una breve descripción y una vista previa del perfil u organización.
@@ -34,7 +68,7 @@
         </section>
 
         <section>
-            <h3>Mis repositorios</h3>
+            <h3 data-i18n="portfolio.repos">Mis repositorios</h3>
             <article>
                 <header>
                     <h3>Perfil personal: Pelayori</h3>
@@ -137,21 +171,17 @@
     </main>
 
     <footer>
-        <p>© 2025 Pelayo Rojas Íñigo</p>
+        <p data-i18n="footer.copyright">© 2025 Pelayo Rojas Íñigo</p>
+        <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07">7 de diciembre
+                de 2025</time></p>
+        <nav aria-label="Redes sociales">
+            <ul>
+                <li><a href="https://github.com/Pelayori" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/pelayo-rojas-%C3%AD%C3%B1igo-435903265/" target="_blank"
+                        rel="noopener">LinkedIn</a></li>
+            </ul>
+        </nav>
     </footer>
-    <script type="module">
-
-        import EmbeddedPageSdk from "https://app.realeye.io/sdk/js/testRunnerEmbeddableSdk-1.7.1.js"
-
-        window.addEventListener("DOMContentLoaded", () => {
-            const debugMode = false;
-            const stimulusId = null; // Or Stimulus/Item UUID from RealEye Study, e.g. "61560b76-3d31-4f0e-b530-55bd8709aadb"
-            const forceRun = false;
-
-            const reSdk = new EmbeddedPageSdk(debugMode, stimulusId, forceRun)
-        });
-
-    </script>
 </body>
 
 </html>

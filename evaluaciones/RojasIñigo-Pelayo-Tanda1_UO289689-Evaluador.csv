@@ -1,0 +1,39 @@
+﻿Métrica del Sitio Web Personal;;;;;
+;;;;;
+Persona:;Rojas Iñigo Pelayo;;;;
+Url:;https://uo287529.github.io/MIW---UX/;;;;
+Tecnología:;HTML, CSS;;;;
+Evaluador:;Samuel Bustamante Larriet;;;;
+Fecha:;27/11/2025;;;;
+;;;;;
+;;Calificación Final;7,19;;
+;;;;;
+Ponderación;;Promedios;Valor Ponderado;;OBSERVACIONES
+20%;1. Usabilidad;6,00;1,20;;
+;1.1 Comprensibilidad global del sitio Web: mapa, migas, etc.;8;;;No hay contextualización espacial de dónde estoy (no lo veo ni indicada en el navegador, ni hay migas, ni mapas, etc.)
+;1.2 Mecanismos de ayuda y retroalimentación en línea;0;;;No hay ni mecanismos de ayuda ni de retroalimentación en línea.
+;1.3 Aspectos estéticos de las interfaces;10;;;Me gusta mucho la estética en general.
+;1.4 Adaptabilidad a dispositivos móviles medido con herramientas;10;;;Completamente adaptable a dispositivos móviles.
+;1.5 Internacionalización: Usa varios idiomas;0;;;No hay internacionalización.
+;1.6 Enlaces a redes sociales;8;;;Sólo tiene la red social de GitHub. Añadiría LinkdIn.
+15%;2. Accesibilidad;10,00;1,50;;
+;2.1 Accesibilidad solamente con teclado sin uso de ratón;10;;;Es totalmente accesible.
+;2.2 Navegación eliminando todos los elementos gráficos;10;;;Todas las imágenes tienen alt.
+;2.3 Comprobación automática de accesibilidad con herramientas;10;;;No hay ningún error. Puntuación de 10 en todas las páginas medidas con Wave.
+25%;3. Funcionalidad;5,00;1,25;;
+;3.1 Calidad del buscador;0;;;No hay buscador.
+;3.2 Facilidad de navegación;10;;;Muy fácil de navegar por el sitio web.
+20%;4 Contenidos;7,50;1,50;;
+;4.1 Información sobre las aficiones;10;;;Hay información sobre diversas aficiones.
+;4.2 Información sobre formación y experiencia laboral;10;;;Hay información sobre sus estudios y diversos proyectos de software.
+;4.3 Información de contacto;10;;;Hay links a diversos correos y el propio sitio web presenta un formulario de contacto.
+;4.4 Contacto con personas que avalan a la persona;0;;;No hay ningún contacto.
+10%;5. Confiabilidad;7,50;0,75;;
+;5.1 Ausencia de Deficiencias y Errores;10;;;No hay ninguna deficiencia ni error.
+;5.2 Validación de estándar HTML;10;;;Ningún erorr presente en ninguna página utilizando el validador del W3C.
+;5.3 Validación de estándar CSS;10;;;Ningún erorr presente en ninguna página utilizando el validador del W3C.
+;5.4 Fecha de última actualización;0;;;No hay fecha de última actualización.
+10%;6. Eficiencia;9,85;0,99;;
+;6.1 Rendimiento medido con herramientas;9,7;;;97% de puntuación utilizando la herramienta de Lighthouse.
+;6.2 Tiempo de carga del sitio Web;10;;;Tiempo de carga inmediato.
+;;;;;

@@ -1,0 +1,39 @@
+﻿Métrica del Sitio Web Personal;;;;;
+;;;;;
+Persona:;Rojas Íñigo, Pelayo;;;;
+Url:;https://uo287529.github.io/MIW---UX/;;;;
+Tecnología:;HTML Y CSS;;;;
+Evaluador:;Enrique Torralbo Ramos;;;;
+Fecha:;28/10/2025;;;;
+;;;;;
+;;Calificación Final;7,09;;
+;;;;;
+Ponderación;;Promedios;Valor Ponderado;;OBSERVACIONES
+20%;1. Usabilidad;5,83;1,17;;
+;1.1 Comprensibilidad global del sitio Web: mapa, migas, etc.;6;;;Esta bien estructurado y bonito, pero no sabes en que apartado estas, estaria bien que el apartado estuviera de otro color en el navbar
+;1.2 Mecanismos de ayuda y retroalimentación en línea;9;;;Hay un formulario de contacto para enviar un correo.
+;1.3 Aspectos estéticos de las interfaces;10;;;Esta bastante bonito.
+;1.4 Adaptabilidad a dispositivos móviles medido con herramientas;10;;;Esta bastante comodo, no se pierde ningun contenido.
+;1.5 Internacionalización: Usa varios idiomas;0;;;No hay
+;1.6 Enlaces a redes sociales;0;;;No hay
+15%;2. Accesibilidad;10,00;1,50;;
+;2.1 Accesibilidad solamente con teclado sin uso de ratón;10;;;No es necesario el raton
+;2.2 Navegación eliminando todos los elementos gráficos;10;;;No es necesario  los estilos para navegar
+;2.3 Comprobación automática de accesibilidad con herramientas;10;;;HE usado Wave Taw y Achecks
+25%;3. Funcionalidad;5,00;1,25;;
+;3.1 Calidad del buscador;0;;;
+;3.2 Facilidad de navegación;10;;;
+20%;4 Contenidos;7,25;1,45;;
+;4.1 Información sobre las aficiones;10;;;Informa sobre sus aficiones
+;4.2 Información sobre formación y experiencia laboral;9;;;Ha hablado sobre lo que hace pero no queda claro si laboralmente o en su tiempo libre ni si ha trabajado o no
+;4.3 Información de contacto;10;;;Pone varias veces en la pagina sus correos y hay un formulario de contacto
+;4.4 Contacto con personas que avalan a la persona;0;;;No hay
+10%;5. Confiabilidad;7,25;0,73;;
+;5.1 Ausencia de Deficiencias y Errores;9;;;Solo hay error al enviar formulario
+;5.2 Validación de estándar HTML;10;;;No hay
+;5.3 Validación de estándar CSS;10;;;No hay
+;5.4 Fecha de última actualización;0;;;No hay
+10%;6. Eficiencia;10,00;1,00;;
+;6.1 Rendimiento medido con herramientas;10;;;Me sale 97 en performance en lighthouse, practicamente perfecto
+;6.2 Tiempo de carga del sitio Web;10;;;
+;;;;;

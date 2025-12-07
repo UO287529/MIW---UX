@@ -1,5 +1,3 @@
-<!--<p><a href="mailto:UO287529@uniovi.es">UO287529@uniovi.es</a></p>
-        <address>Universidad de Oviedo</address>-->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,8 +7,16 @@
   <title>Pelayo | Contacto</title>
   <link rel="stylesheet" href="styles.css">
   <meta name="description"
-    content="Página personal de Pelayo Rojas Íñigo, estudiante de máster en Ingeniería Web en la Universidad de Oviedo.">
-  <script src="realeye_sdk.js"></script>
+    content="Página de contacto de Pelayo Rojas Íñigo con formulario y correos electrónicos disponibles.">
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "uhe7plyk8m");
+  </script>
+  <script src="i18n.js" defer></script>
+  <script src="buscador.js" defer></script>
 </head>
 
 <body>
@@ -18,56 +24,83 @@
     <h1>Pelayo Rojas Íñigo</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="aficiones.html">Aficiones</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="index.html" data-i18n="nav.inicio">Inicio</a></li>
+        <li><a href="aficiones.html" data-i18n="nav.aficiones">Aficiones</a></li>
+        <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+        <li><a href="contacto.html" class="activa" aria-current="page" data-i18n="nav.contacto">Contacto</a></li>
+        <li><button type="button" aria-expanded="false" aria-controls="buscador-form" data-toggle-search>🔍 <span
+              data-i18n="buscar.boton">Buscar</span></button></li>
       </ul>
     </nav>
+    <search role="search" hidden>
+      <form id="buscador-form">
+        <label for="busqueda" hidden>Buscar</label>
+        <input type="search" id="busqueda" name="q" placeholder="Buscar en el sitio..." data-i18n="buscar.placeholder">
+        <button type="submit" data-i18n="buscar.boton">Buscar</button>
+        <button type="button" data-close-search aria-label="Cerrar buscador">✕</button>
+      </form>
+    </search>
+    <label for="idioma" hidden>Idioma</label>
+    <select id="idioma" aria-label="Seleccionar idioma">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
   </header>
+
+  <nav aria-label="Migas de pan">
+    <ol>
+      <li><a href="index.html" data-i18n="migas.inicio">Inicio</a></li>
+      <li aria-current="page" data-i18n="nav.contacto">Contacto</li>
+    </ol>
+  </nav>
+  <output aria-live="polite" aria-label="Resultados de búsqueda" hidden></output>
+
   <main>
     <section>
-      <h2>Contáctame!</h2>
+      <h2 data-i18n="contacto.titulo">¡Contáctame!</h2>
 
-      <p>Si deseas ponerte en contacto conmigo, puedes hacerlo a través de uno de mis correos electrónicos:</p>
+      <p data-i18n="contacto.intro">Si deseas ponerte en contacto conmigo, puedes hacerlo a través de uno de mis correos
+        electrónicos:</p>
       <ul>
-        <li><a href="mailto:UO287529@uniovi.es">UO287529@uniovi.es</a> - Corporativo (Universidad)</li>
-        <li><a href="mailto:pelayori2003@gmail.com">pelayori2003@gmail.com</a> - Personal</li>
-        <li><a href="mailto:admin@pelayori.com">admin@pelayori.com</a> - Profesional</li>
+        <li><a href="mailto:UO287529@uniovi.es">UO287529@uniovi.es</a> - <span
+            data-i18n="contacto.corporativo">Corporativo (Universidad)</span></li>
+        <li><a href="mailto:pelayori2003@gmail.com">pelayori2003@gmail.com</a> - <span
+            data-i18n="contacto.personal">Personal</span></li>
+        <li><a href="mailto:admin@pelayori.com">admin@pelayori.com</a> - <span
+            data-i18n="contacto.profesional">Profesional</span></li>
       </ul>
 
-      <p>En su defecto, puedes utilizar el siguiente formulario de contacto:</p>
-      <form action="#" method="POST">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
+      <p data-i18n="contacto.formulario">En su defecto, puedes utilizar el siguiente formulario de contacto:</p>
+      <form action="#" method="POST" novalidate>
+        <label for="name" data-i18n="contacto.nombre">Nombre:</label>
+        <input type="text" id="name" name="name" required aria-describedby="name-help" autocomplete="name">
+        <small id="name-help" hidden>Introduce tu nombre completo</small>
 
-        <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="_replyto" required>
+        <label for="email" data-i18n="contacto.email">Correo electrónico:</label>
+        <input type="email" id="email" name="_replyto" required aria-describedby="email-help" autocomplete="email">
+        <small id="email-help" hidden>Introduce un correo válido para poder responderte</small>
 
-        <label for="message">Mensaje:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message" data-i18n="contacto.mensaje">Mensaje:</label>
+        <textarea id="message" name="message" rows="5" required aria-describedby="message-help"></textarea>
+        <small id="message-help" hidden>Escribe tu mensaje. Mínimo 10 caracteres</small>
 
-        <button type="submit">Enviar</button>
+        <button type="submit" data-i18n="contacto.enviar">Enviar</button>
       </form>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Pelayo Rojas Íñigo</p>
+    <p data-i18n="footer.copyright">© 2025 Pelayo Rojas Íñigo</p>
+    <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07">7 de diciembre de
+        2025</time></p>
+    <nav aria-label="Redes sociales">
+      <ul>
+        <li><a href="https://github.com/Pelayori" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/pelayo-rojas-%C3%AD%C3%B1igo-435903265/" target="_blank"
+            rel="noopener">LinkedIn</a></li>
+      </ul>
+    </nav>
   </footer>
-  <script type="module">
-
-    import EmbeddedPageSdk from "https://app.realeye.io/sdk/js/testRunnerEmbeddableSdk-1.7.1.js"
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const debugMode = false;
-      const stimulusId = null; // Or Stimulus/Item UUID from RealEye Study, e.g. "61560b76-3d31-4f0e-b530-55bd8709aadb"
-      const forceRun = false;
-
-      const reSdk = new EmbeddedPageSdk(debugMode, stimulusId, forceRun)
-    });
-
-  </script>
 </body>
 
 </html>

@@ -1,0 +1,228 @@
+﻿Métrica del Sitio Web Personal - Inteligencia Artificial Generativa;;;;;;;
+;;;;;;;
+Autoevaluador:;;;;;;;
+Url:;;;;;;;
+Tecnología:;;;;;;;
+Fecha:;;;;;;;
+;;;;;;;
+;;Calificación Final Inteligencia Artificial ;6,11;;;;
+;;;;;;;
+Ponderación;;Promedios;Valor Ponderado;;IA generativa utilizada;PROMPTS;OBSERVACIONES
+20%;1. Usabilidad;5,67;1,13;;;;
+;1.1 Comprensibilidad global del sitio Web: mapa, migas, etc.;8;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+1.1 Comprensibilidad global del sitio Web: mapa, migas, etc.";La justificación está muy bien fundada, y mucho detalle y ejemplos
+;1.2 Mecanismos de ayuda y retroalimentación en línea;4;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+1.2 Mecanismos de ayuda y retroalimentación en línea
+";Errores muy bien expuestos
+;1.3 Aspectos estéticos de las interfaces;7;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+1.3 Aspectos estéticos de las interfaces";Resalta diseño muy plano, poca personalidad y formularios básicos
+;1.4 Adaptabilidad a dispositivos móviles medido con herramientas;8;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+1.4 Adaptabilidad a dispositivos móviles medido con herramientas";Valoración hecha solamente con etiquetas html ya que no puede lanzar herramientas
+;1.5 Internacionalización: Usa varios idiomas;1;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+1.5 Internacionalización: Usa varios idiomas";Inexistente, solo para 1 idioma, por eso el punto
+;1.6 Enlaces a redes sociales;6;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+1.6 Enlaces a redes sociales";No hay enlaces a redes típicas, solo github. Tampoco hay un bloque de redes sociales claro
+15%;2. Accesibilidad;8,00;1,20;;;;
+;2.1 Accesibilidad solamente con teclado sin uso de ratón;7;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+2.1 Accesibilidad solamente con teclado sin uso de ratón";Evalua la accesibilidad correctamente, no menciona que es mejor la navegabilidad con ratón
+;2.2 Navegación eliminando todos los elementos gráficos;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+2.2 Navegación eliminando todos los elementos gráficos";La web se puede recorrer y entender sin elementos gráficos prácticamente sin pérdida de capacidad de navegación
+;2.3 Comprobación automática de accesibilidad con herramientas;8;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+2.3 Comprobación automática de accesibilidad con herramientas";Ha simulado los resultados, no ha podido lanzar ninguna herramienta
+25%;3. Funcionalidad;4,00;1,00;;;;
+;3.1 Calidad del buscador;0;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+3.1 Calidad del buscador";Menciona que no hay buscador
+;3.2 Facilidad de navegación;8;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+3.2 Facilidad de navegación";Indica que no hay mecanismos de indicador de página activa o navegación rápida
+20%;4 Contenidos;5,50;1,10;;;;
+;4.1 Información sobre las aficiones;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+4.1 Información sobre las aficiones";Menciona buen contenido
+;4.2 Información sobre formación y experiencia laboral;4;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+4.2 Información sobre formación y experiencia laboral";Menciona falta de secciones de formacion o experiencia profesional
+;4.3 Información de contacto;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+4.3 Información de contacto";Información completa y usable
+;4.4 Contacto con personas que avalan a la persona;0;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+4.4 Contacto con personas que avalan a la persona";Inexistente
+10%;5. Confiabilidad;7,75;0,78;;;;
+;5.1 Ausencia de Deficiencias y Errores;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+5.1 Ausencia de Deficiencias y Errores";Limtación en cuanto a ejecutar herramientas de validación
+;5.2 Validación de estándar HTML;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+5.2 Validación de estándar HTML";Limtación en cuanto a ejecutar herramientas de validación
+;5.3 Validación de estándar CSS;10;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+5.3 Validación de estándar CSS";Limtación en cuanto a ejecutar herramientas de validación. Comenta que se tendría que aplicar una penalización de 2 puntos debido a que no se ha podido usar el validador del W3C, lo cual es normal.
+;5.4 Fecha de última actualización;3;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+5.4 Fecha de última actualización";Solo aparece un copyright
+10%;6. Eficiencia;9,00;0,90;;;;
+;6.1 Rendimiento medido con herramientas;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+6.1 Rendimiento medido con herramientas";No ha podido usar herramientas, pero dada la estructura y la ausencia de lazy-loading, le da un 9
+;6.2 Tiempo de carga del sitio Web;9;;;ChatGPT 5.1 Plus, Thinking (Extendido);"Eres un auditor de usabilidad y experiencia de usuario. Tu trabajo es auditar ciertos aspectos de usabilidad, ergonomía y accesibilidad de una página web dada.
+
+Para cada aspecto requerido, debes dar una puntuación entre 0 y 10, ambos inclusive
+
+Ahora deberás evaluar el siguiente sitio web:
+https://uo287529.github.io/MIW---UX/index.html
+
+Aspectos a evaluar:
+
+6.2 Tiempo de carga del sitio Web";No menciona herramientas, lo basa todo en la simplicidad de la web
+;;;;;;;

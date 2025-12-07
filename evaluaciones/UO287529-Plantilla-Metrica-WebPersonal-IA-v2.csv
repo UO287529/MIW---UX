@@ -1,0 +1,38 @@
+﻿Métrica del Sitio Web Personal - Autoevaluación;;;;;
+;;;;;
+Autoevaluador:;Rojas Íñigo, Pelayo;;;;
+Url:;https://uo287529.github.io/MIW---UX/;;;;
+Tecnología:;HTML, CSS;;;;
+Fecha:;02/12/2025;;;;
+;;;;;
+;;Calificación Final ;6,13;;
+;;;;;
+Ponderación;;Promedios;Valor Ponderado;;OBSERVACIONES
+20%;1. Usabilidad;5,17;1,03;;
+;1.1 Comprensibilidad global del sitio Web: mapa, migas, etc.;4;;;No mapa/migas, no se resalta la posición del usuario en la página en la barra de búsqueda
+;1.2 Mecanismos de ayuda y retroalimentación en línea;6;;;No son necesarios, pero es dificil encontrarse en el sitio más allá de los encabezados
+;1.3 Aspectos estéticos de las interfaces;8;;;Aspectos bastante suaves, pero agradables
+;1.4 Adaptabilidad a dispositivos móviles medido con herramientas;9;;;Todo el sitio es adaptable, aunque los videos quedan demasiado pequeños
+;1.5 Internacionalización: Usa varios idiomas;0;;;No tiene
+;1.6 Enlaces a redes sociales;4;;;Tiene enlaces justos, desperdigados por la página
+15%;2. Accesibilidad;8,67;1,30;;
+;2.1 Accesibilidad solamente con teclado sin uso de ratón;7;;;Se puede navegar, pero no tiene acceso directo con alt + tecla
+;2.2 Navegación eliminando todos los elementos gráficos;9;;;Buena navegación, todo debidamente etiquetado
+;2.3 Comprobación automática de accesibilidad con herramientas;10;;;
+25%;3. Funcionalidad;3,50;0,88;;
+;3.1 Calidad del buscador;0;;;No hay
+;3.2 Facilidad de navegación;7;;;Se puede navegar fácilmente por la barra de navegación, pero no hay muchos hipervínculos dentro del contenido
+20%;4 Contenidos;6,00;1,20;;
+;4.1 Información sobre las aficiones;9;;;Explicación clara e interesante
+;4.2 Información sobre formación y experiencia laboral;5;;;Solo hay experiencia profesional y proyectos, no hay formación disponible
+;4.3 Información de contacto;10;;;Varias opciones, especificando claramente cada uno de sus roles
+;4.4 Contacto con personas que avalan a la persona;0;;;No hay
+10%;5. Confiabilidad;8,25;0,83;;
+;5.1 Ausencia de Deficiencias y Errores;10;;;
+;5.2 Validación de estándar HTML;10;;;
+;5.3 Validación de estándar CSS;10;;;
+;5.4 Fecha de última actualización;3;;;No hay nada más que el año, no hay fecha y hora exacta de la última actualización
+10%;6. Eficiencia;9,00;0,90;;
+;6.1 Rendimiento medido con herramientas;9;;;Buen rendimiento, LCP bajo
+;6.2 Tiempo de carga del sitio Web;9;;;Tiempo de carga excelente
+;;;;;
