@@ -11,6 +11,7 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 50%, #ecfdf5 100%);
     color: #1f2933;
+    /* Advertencia comprobada: background es gradient, no background-color */
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -34,6 +35,7 @@ header {
     text-align: center;
     padding: clamp(2rem, 4vw, 3rem) 1.5rem clamp(1.25rem, 3vw, 2rem) 1.5rem;
     color: #2563eb;
+    /* Advertencia comprobada: hereda background de body */
 }
 
 /* Especificidad: 002 */
@@ -45,6 +47,7 @@ nav ul {
     justify-content: center;
     gap: 1rem;
     background-color: #ffffffcc;
+    /* Advertencia comprobada: color heredado de body */
     /* 80% */
     backdrop-filter: blur(0.5rem);
     border-radius: 999rem;
@@ -59,6 +62,7 @@ nav ul {
 nav a {
     text-decoration: none;
     color: #2563eb;
+    /* Advertencia comprobada: hereda background de nav ul */
     font-weight: 600;
     padding: 0.5rem 1.25rem;
     border-radius: 999rem;
@@ -70,13 +74,15 @@ nav a {
 nav a:hover,
 nav a:focus {
     color: #1d4ed8;
+    /* Advertencia comprobada: hereda background de nav ul */
     transform: translateY(-0.125rem);
 }
 
-/* Especificidad: 011 - Enlace de página activa */
+/* Especificidad: 012 */
 nav a.activa {
     background: linear-gradient(135deg, #2563eb, #10b981);
     color: #ffffff;
+    /* Advertencia comprobada: background es gradient, no background-color */
     box-shadow: 0 0.25rem 0.75rem #2563eb40;
 }
 
@@ -84,10 +90,11 @@ nav a.activa {
 nav a.activa:hover,
 nav a.activa:focus {
     color: #ffffff;
+    /* Advertencia comprobada: hereda background de nav a.activa */
     transform: translateY(-0.125rem);
 }
 
-/* Especificidad: 002 - Botón toggle del buscador en navbar */
+/* Especificidad: 002 */
 nav button {
     background: transparent;
     border: 0.125rem solid #2563eb;
@@ -105,20 +112,23 @@ nav button:hover,
 nav button:focus {
     background: linear-gradient(135deg, #2563eb, #10b981);
     color: #ffffff;
+    /* Advertencia comprobada: background es gradient, no background-color */
     border-color: transparent;
     transform: translateY(-0.125rem);
 }
 
-/* Especificidad: 012 - Botón toggle activo (buscador visible) */
+/* Especificidad: 012 */
 nav button[aria-expanded="true"] {
     background: linear-gradient(135deg, #2563eb, #10b981);
     color: #ffffff;
+    /* Advertencia comprobada: background es gradient, no background-color */
     border-color: transparent;
 }
 
 /* Especificidad: 001 */
 main {
     background-color: #ffffff;
+    /* Advertencia comprobada: color heredado de body */
     margin: 0 auto 3rem auto;
     padding: clamp(1.5rem, 4vw, 3rem);
     border-radius: 1.5rem;
@@ -147,6 +157,7 @@ h1,
 h2,
 h3 {
     color: #1f2933;
+    /* Advertencia comprobada: hereda background de section/main */
     margin-top: 0;
     line-height: 1.2;
 }
@@ -156,6 +167,7 @@ figure {
     margin: 2rem auto;
     text-align: center;
     background-color: #ffffffe6;
+    /* Advertencia comprobada: color heredado de body */
     /* 90% */
     padding: 1.5rem;
     border-radius: 1rem;
@@ -179,6 +191,7 @@ img {
 figcaption {
     font-size: 0.95rem;
     color: #64748b;
+    /* Advertencia comprobada: hereda background de figure */
     margin-top: 1rem;
 }
 
@@ -196,6 +209,7 @@ video {
 aside {
     margin: 0 auto 3rem auto;
     background-color: #fffffff2;
+    /* Advertencia comprobada: color heredado de body */
     /* 95% */
     padding: clamp(1.5rem, 3vw, 2.5rem);
     border-radius: 1.5rem;
@@ -210,10 +224,11 @@ footer {
     text-align: center;
     padding: 2.5rem 1rem 1rem 1rem;
     color: #64748b;
+    /* Advertencia comprobada: hereda background de body */
     font-size: 0.95rem;
 }
 
-/* Especificidad: 002 - Navegación de redes sociales en footer */
+/* Especificidad: 003 */
 footer nav ul {
     list-style: none;
     padding: 0;
@@ -223,28 +238,31 @@ footer nav ul {
     gap: 1.5rem;
 }
 
-/* Especificidad: 002 */
+/* Especificidad: 003 */
 footer nav a {
     color: #2563eb;
+    /* Advertencia comprobada: hereda background de body */
     text-decoration: none;
     font-weight: 500;
     transition: color 200ms ease;
 }
 
-/* Especificidad: 012 */
+/* Especificidad: 013 */
 footer nav a:hover {
     color: #10b981;
+    /* Advertencia comprobada: hereda background de body */
 }
 
-/* Especificidad: 002 - Fecha de actualización */
+/* Especificidad: 002 */
 footer time {
     display: block;
     margin-top: 0.5rem;
     font-size: 0.85rem;
     color: #94a3b8;
+    /* Advertencia comprobada: hereda background de body */
 }
 
-/* Especificidad: 002 - Migas de pan */
+/* Especificidad: 012 */
 header+nav[aria-label] {
     width: min(100% - 3rem, 68rem);
     margin: -1rem auto 1.5rem auto;
@@ -252,7 +270,7 @@ header+nav[aria-label] {
     font-size: 0.9rem;
 }
 
-/* Especificidad: 003 - Lista de migas */
+/* Especificidad: 003 */
 header+nav ol {
     list-style: none;
     padding: 0;
@@ -263,23 +281,25 @@ header+nav ol {
     flex-wrap: wrap;
 }
 
-/* Especificidad: 003 - Elementos de migas */
+/* Especificidad: 003 */
 header+nav li {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* Especificidad: 003 - Separador de migas */
+/* Especificidad: 024 */
 header+nav li:not(:last-child)::after {
     content: "›";
     color: #94a3b8;
+    /* Advertencia comprobada: hereda background de body */
     font-weight: bold;
 }
 
 /* Especificidad: 003 */
 header+nav a {
     color: #2563eb;
+    /* Advertencia comprobada: hereda background de body */
     text-decoration: none;
 }
 
@@ -288,19 +308,20 @@ header+nav a:hover {
     text-decoration: underline;
 }
 
-/* Especificidad: 002 - Elemento actual en migas */
+/* Especificidad: 012 */
 header+nav [aria-current] {
     color: #64748b;
+    /* Advertencia comprobada: hereda background de body */
     font-weight: 500;
 }
 
-/* Especificidad: 002 - Buscador dentro del header */
+/* Especificidad: 002 */
 header search {
     display: block;
     margin-top: 1rem;
 }
 
-/* Especificidad: 003 - Formulario del buscador en header */
+/* Especificidad: 003 */
 header search form {
     display: flex;
     gap: 0.5rem;
@@ -310,7 +331,7 @@ header search form {
     margin: 0 auto;
 }
 
-/* Especificidad: 003 - Input del buscador en header */
+/* Especificidad: 003 */
 header search input {
     flex: 1;
     min-width: 0;
@@ -319,37 +340,40 @@ header search input {
     font-size: 0.9rem;
 }
 
-/* Especificidad: 003 - Botón del buscador en header */
+/* Especificidad: 003 */
 header search button {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
 }
 
-/* Especificidad: 003 - Botón cerrar del buscador */
+/* Especificidad: 013 */
 header search button[data-close-search] {
     background: #ef4444;
+    /* Advertencia comprobada: hereda color de button */
     padding: 0.5rem 0.75rem;
     min-width: auto;
 }
 
-/* Especificidad: 013 */
+/* Especificidad: 023 */
 header search button[data-close-search]:hover {
     background: #dc2626;
+    /* Advertencia comprobada: hereda color de button */
 }
 
-/* Especificidad: 001 - Resultados del buscador */
+/* Especificidad: 001 */
 output {
     display: block;
     width: min(100% - 3rem, 68rem);
     margin: 0 auto 1.5rem auto;
     padding: 1rem;
     background: #ffffff;
+    /* Advertencia comprobada: color heredado de body */
     border-radius: 0.75rem;
     border: 0.0625rem solid #e5e7eb;
     box-shadow: 0 0.5rem 1rem #0f172a0f;
 }
 
-/* Especificidad: 002 - Lista de resultados */
+/* Especificidad: 002 */
 output ul {
     list-style: none;
     padding: 0;
@@ -358,7 +382,7 @@ output ul {
     gap: 0.75rem;
 }
 
-/* Especificidad: 002 - Resultado individual */
+/* Especificidad: 002 */
 output li {
     padding: 0.75rem;
     background: linear-gradient(145deg, #2563eb08, #10b98108);
@@ -366,9 +390,10 @@ output li {
     border: 0.0625rem solid #e5e7eb;
 }
 
-/* Especificidad: 002 - Enlace de resultado */
+/* Especificidad: 002 */
 output a {
     color: #2563eb;
+    /* Advertencia comprobada: hereda background de output li */
     font-weight: 600;
     text-decoration: none;
 }
@@ -378,21 +403,23 @@ output a:hover {
     text-decoration: underline;
 }
 
-/* Especificidad: 002 - Texto del resultado */
+/* Especificidad: 002 */
 output p {
     margin: 0.25rem 0 0 0;
     font-size: 0.9rem;
     color: #64748b;
+    /* Advertencia comprobada: hereda background de output li */
 }
 
-/* Especificidad: 002 - Sin resultados */
+/* Especificidad: 002 */
 output mark {
     background: #fef3c7;
+    /* Advertencia comprobada: color heredado de body */
     padding: 0.125rem 0.25rem;
     border-radius: 0.25rem;
 }
 
-/* Especificidad: 012 - Selector de idioma */
+/* Especificidad: 002 */
 header select {
     padding: 0.5rem 1rem;
     border: 0.0625rem solid #e5e7eb;
@@ -404,7 +431,7 @@ header select {
     margin-top: 1rem;
 }
 
-/* Especificidad: 022 */
+/* Especificidad: 012 */
 header select:focus {
     outline: none;
     border-color: #2563eb;
@@ -426,6 +453,7 @@ blockquote {
     padding-left: 1.25rem;
     color: #1f2933;
     background-color: #10b98114;
+    /* Advertencia comprobada: color declarado arriba */
     /* 8% */
     border-radius: 0.5rem;
     margin: 2rem 0;
@@ -443,6 +471,7 @@ form {
 label {
     font-weight: 600;
     color: #1f2933;
+    /* Advertencia comprobada: hereda background de main/section */
 }
 
 /* Especificidad: 001, 001 */
@@ -453,6 +482,7 @@ textarea {
     /* 50% */
     border-radius: 0.5rem;
     background-color: #ffffffe6;
+    /* Advertencia comprobada: color heredado de body */
     /* 90% */
     transition: border-color 200ms ease, box-shadow 200ms ease;
     font: inherit;
@@ -471,6 +501,7 @@ textarea:focus {
 button {
     background: linear-gradient(135deg, #2563eb, #10b981);
     color: #ffffff;
+    /* Advertencia comprobada: background es gradient, no background-color */
     padding: 0.85rem 1.75rem;
     border: none;
     border-radius: 999rem;
@@ -488,6 +519,7 @@ button:hover {
     box-shadow: 0 1.5625rem 2.5rem #2563eb40;
 }
 
+/* Advertencia comprobada: redefiniciones en media queries son intencionales para responsive */
 @media (max-width: 56.25em) {
 
     /* Especificidad: 001 */
@@ -511,6 +543,7 @@ button:hover {
     }
 }
 
+/* Advertencia comprobada: redefiniciones en media queries son intencionales para responsive */
 @media (max-width: 40em) {
 
     /* Especificidad: 001 */
@@ -560,6 +593,7 @@ button:hover {
     border-radius: 0.5rem;
 }
 
+/* Advertencia comprobada: keyframes no requieren color/background-color emparejados */
 @keyframes resaltar-resultado {
     0% {
         background-color: #fef3c7;
@@ -585,20 +619,23 @@ output .resultados-sublista {
     font-size: 0.85rem;
 }
 
-/* Especificidad: 012 */
+/* Especificidad: 021 */
 output .resultados-sublista li {
     background: transparent;
+    /* Advertencia comprobada: hereda color de output li */
     border: none;
     padding: 0.25rem 0.5rem;
 }
 
-/* Especificidad: 012 */
+/* Especificidad: 021 */
 output .resultados-sublista a {
     font-weight: 500;
     color: #64748b;
+    /* Advertencia comprobada: hereda background de output li */
 }
 
-/* Especificidad: 022 */
+/* Especificidad: 031 */
 output .resultados-sublista a:hover {
     color: #2563eb;
+    /* Advertencia comprobada: hereda background de output li */
 }
