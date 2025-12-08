@@ -74,15 +74,12 @@
       <form action="#" method="POST" novalidate>
         <label for="name" data-i18n="contacto.nombre">Nombre:</label>
         <input type="text" id="name" name="name" required aria-describedby="name-help" autocomplete="name">
-        <small id="name-help" hidden>Introduce tu nombre completo</small>
 
         <label for="email" data-i18n="contacto.email">Correo electrónico:</label>
         <input type="email" id="email" name="_replyto" required aria-describedby="email-help" autocomplete="email">
-        <small id="email-help" hidden>Introduce un correo válido para poder responderte</small>
 
         <label for="message" data-i18n="contacto.mensaje">Mensaje:</label>
         <textarea id="message" name="message" rows="5" required aria-describedby="message-help"></textarea>
-        <small id="message-help" hidden>Escribe tu mensaje. Mínimo 10 caracteres</small>
 
         <button type="submit" data-i18n="contacto.enviar">Enviar</button>
       </form>
@@ -101,6 +98,7 @@
       </ul>
     </nav>
   </footer>
+  <script src="formulario.js" defer></script>
 </body>
 
 </html>
