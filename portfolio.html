@@ -58,7 +58,7 @@
     <output aria-live="polite" aria-label="Resultados de búsqueda" hidden></output>
 
     <main>
-        <section>
+        <section id="portfolio-intro">
             <h2 data-i18n="portfolio.titulo">Portfolio</h2>
             <p data-i18n="portfolio.intro">
                 A continuación encontrarás una selección de perfiles y organizaciones en GitHub donde publico y colaboro
@@ -67,44 +67,48 @@
             </p>
         </section>
 
-        <section>
+        <section id="repos">
             <h3 data-i18n="portfolio.repos">Mis repositorios</h3>
-            <article>
+            <article id="pelayori">
                 <header>
-                    <h3>Perfil personal: Pelayori</h3>
+                    <h3 data-i18n="portfolio.pelayori-titulo">Perfil personal: Pelayori</h3>
                     <p>
                         <a href="https://github.com/Pelayori" target="_blank" rel="noopener">github.com/Pelayori</a>
                     </p>
                 </header>
                 <figure>
-                    <img src="https://github.com/Pelayori.png" alt="Avatar del perfil de GitHub Pelayori">
-                    <figcaption>Vista previa del perfil personal en GitHub.</figcaption>
+                    <img src="https://github.com/Pelayori.png" alt="Avatar del perfil de GitHub Pelayori"
+                        data-i18n="portfolio.pelayori-alt">
+                    <figcaption data-i18n="portfolio.pelayori-caption">Vista previa del perfil personal en GitHub.
+                    </figcaption>
                 </figure>
-                <p>
+                <p data-i18n="portfolio.pelayori-desc1">
                     Espacio donde publico proyectos propios, utilidades y pequeños experimentos. Me gusta mantener un
                     enfoque
                     práctico: ideas pequeñas que resuelven problemas concretos, con atención a la calidad y la
                     documentación.
                 </p>
-                <p>Tambien publico proyectos open-source que haya creado o de los que haya creado.</p>
+                <p data-i18n="portfolio.pelayori-desc2">También publico proyectos open-source que haya creado o de los
+                    que haya contribuido.</p>
                 <details>
-                    <summary>Qué puedes encontrar</summary>
+                    <summary data-i18n="portfolio.pelayori-que">Qué puedes encontrar</summary>
                     <ul>
-                        <li>Prototipos y herramientas de uso diario.</li>
-                        <li>Aprendizajes y pruebas de concepto.</li>
-                        <li>Colaboraciones puntuales en proyectos abiertos.</li>
+                        <li data-i18n="portfolio.pelayori-li1">Prototipos y herramientas de uso diario.</li>
+                        <li data-i18n="portfolio.pelayori-li2">Aprendizajes y pruebas de concepto.</li>
+                        <li data-i18n="portfolio.pelayori-li3">Colaboraciones puntuales en proyectos abiertos.</li>
                     </ul>
                 </details>
                 <footer>
-                    <p>Últimos cambios y contribuciones se reflejan directamente en GitHub.</p>
+                    <p data-i18n="portfolio.pelayori-footer">Últimos cambios y contribuciones se reflejan directamente
+                        en GitHub.</p>
                 </footer>
             </article>
 
             <hr>
 
-            <article>
+            <article id="arkserverapi">
                 <header>
-                    <h3>Organización: ArkServerApi</h3>
+                    <h3 data-i18n="portfolio.ark-titulo">Organización: ArkServerApi</h3>
                     <p>
                         <a href="https://github.com/ArkServerApi" target="_blank"
                             rel="noopener">github.com/ArkServerApi</a>
@@ -112,67 +116,145 @@
                 </header>
                 <figure>
                     <img src="https://github.com/ArkServerApi.png"
-                        alt="Logotipo/Avatar de la organización ArkServerApi en GitHub">
-                    <figcaption>Vista previa de la organización ArkServerApi.</figcaption>
+                        alt="Logotipo/Avatar de la organización ArkServerApi en GitHub" data-i18n="portfolio.ark-alt">
+                    <figcaption data-i18n="portfolio.ark-caption">Vista previa de la organización ArkServerApi.
+                    </figcaption>
                 </figure>
-                <p>
+                <p data-i18n="portfolio.ark-desc">
                     Ecosistema orientado a la creación y mantenimiento de herramientas y extensiones para servidores de
                     los juegos
-                    <em>ARK: Survival Ascended</em> y <em>ARK: Survival Evolved</em>. El foco está en facilitar el
+                    ARK: Survival Ascended y ARK: Survival Evolved. El foco está en facilitar el
                     desarrollo de plugins y utilidades para administración,
                     monitorización y personalización del servidor.
                 </p>
                 <details>
-                    <summary>Qué puedes encontrar</summary>
+                    <summary data-i18n="portfolio.ark-que">Qué puedes encontrar</summary>
                     <ul>
-                        <li>APIs y utilidades para extender la funcionalidad del servidor.</li>
-                        <li>Ejemplos y recursos para desarrolladores de plugins.</li>
-                        <li>Documentación y guías de uso orientadas a la comunidad.</li>
+                        <li data-i18n="portfolio.ark-li1">APIs y utilidades para extender la funcionalidad del servidor.
+                        </li>
+                        <li data-i18n="portfolio.ark-li2">Ejemplos y recursos para desarrolladores de plugins.</li>
+                        <li data-i18n="portfolio.ark-li3">Documentación y guías de uso orientadas a la comunidad.</li>
                     </ul>
                 </details>
                 <footer>
-                    <p>Proyectos vivos y con aportaciones de la comunidad.</p>
+                    <p data-i18n="portfolio.ark-footer">Proyectos vivos y con aportaciones de la comunidad.</p>
                 </footer>
             </article>
 
             <hr>
 
-            <article>
+            <article id="arquisoft">
                 <header>
-                    <h3>Organización: Arquisoft</h3>
+                    <h3 data-i18n="portfolio.arquisoft-titulo">Organización: Arquisoft</h3>
                     <p>
                         <a href="https://github.com/Arquisoft" target="_blank" rel="noopener">github.com/Arquisoft</a>
                     </p>
                 </header>
                 <figure>
                     <img src="https://github.com/Arquisoft.png"
-                        alt="Logotipo/Avatar de la organización Arquisoft en GitHub">
-                    <figcaption>Vista previa de la organización Arquisoft.</figcaption>
+                        alt="Logotipo/Avatar de la organización Arquisoft en GitHub"
+                        data-i18n="portfolio.arquisoft-alt">
+                    <figcaption data-i18n="portfolio.arquisoft-caption">Vista previa de la organización Arquisoft.
+                    </figcaption>
                 </figure>
-                <p>
+                <p data-i18n="portfolio.arquisoft-desc">
                     Organización centrada en proyectos y materiales de Arquitectura del Software de la Universidad de
                     Oviedo.
                     Recopila diferentes prácticas de la asignatura de Arquitectura del Software, así como plantillas y
                     ejemplos de proyectos.
                 </p>
                 <details>
-                    <summary>Qué puedes encontrar</summary>
+                    <summary data-i18n="portfolio.arquisoft-que">Qué puedes encontrar</summary>
                     <ul>
-                        <li>Proyectos docentes y plantillas base.</li>
-                        <li>Ejemplos de integración, pruebas y despliegue.</li>
-                        <li>Material de apoyo y documentación técnica.</li>
+                        <li data-i18n="portfolio.arquisoft-li1">Proyectos docentes y plantillas base.</li>
+                        <li data-i18n="portfolio.arquisoft-li2">Ejemplos de integración, pruebas y despliegue.</li>
+                        <li data-i18n="portfolio.arquisoft-li3">Material de apoyo y documentación técnica.</li>
                     </ul>
                 </details>
                 <footer>
-                    <p>Contenido especialmente útil para aprendizaje y trabajo colaborativo.</p>
+                    <p data-i18n="portfolio.arquisoft-footer">Contenido especialmente útil para aprendizaje y trabajo
+                        colaborativo.</p>
                 </footer>
+            </article>
+        </section>
+
+        <section id="experiencia">
+            <h3 data-i18n="portfolio.experiencia-titulo">Experiencia Laboral</h3>
+
+            <article id="techstart">
+                <header>
+                    <h4 data-i18n="portfolio.techstart-titulo">TechStart Solutions</h4>
+                    <p data-i18n="portfolio.techstart-puesto">Desarrollador Full Stack</p>
+                    <p data-i18n="portfolio.techstart-fecha">Marzo 2024 - Presente</p>
+                </header>
+                <p data-i18n="portfolio.techstart-desc">
+                    Desarrollo de aplicaciones web empresariales utilizando React, Node.js y PostgreSQL.
+                    Implementación de APIs RESTful y microservicios para clientes del sector financiero.
+                </p>
+                <details>
+                    <summary data-i18n="portfolio.techstart-logros-titulo">Logros destacados</summary>
+                    <ul>
+                        <li data-i18n="portfolio.techstart-logro1">Reducción del tiempo de carga de la aplicación
+                            principal en un 40%.</li>
+                        <li data-i18n="portfolio.techstart-logro2">Implementación de sistema de autenticación OAuth2
+                            para 50.000+ usuarios.</li>
+                        <li data-i18n="portfolio.techstart-logro3">Mentoría a 3 desarrolladores junior del equipo.</li>
+                    </ul>
+                </details>
+            </article>
+
+            <hr>
+
+            <article id="innovatetech">
+                <header>
+                    <h4 data-i18n="portfolio.innovate-titulo">InnovateTech</h4>
+                    <p data-i18n="portfolio.innovate-puesto">Becario de Desarrollo</p>
+                    <p data-i18n="portfolio.innovate-fecha">Septiembre 2023 - Febrero 2024</p>
+                </header>
+                <p data-i18n="portfolio.innovate-desc">
+                    Prácticas curriculares enfocadas en el desarrollo de herramientas internas y automatización
+                    de procesos. Trabajo con Python, Django y bases de datos NoSQL.
+                </p>
+                <details>
+                    <summary data-i18n="portfolio.innovate-logros-titulo">Logros destacados</summary>
+                    <ul>
+                        <li data-i18n="portfolio.innovate-logro1">Desarrollo de un sistema de monitorización de
+                            servidores.</li>
+                        <li data-i18n="portfolio.innovate-logro2">Automatización de tareas repetitivas ahorrando 10
+                            horas semanales.</li>
+                    </ul>
+                </details>
+            </article>
+
+            <hr>
+
+            <article id="cloudscale">
+                <header>
+                    <h4 data-i18n="portfolio.cloudscale-titulo">CloudScale Systems</h4>
+                    <p data-i18n="portfolio.cloudscale-puesto">Colaborador en Prácticas</p>
+                    <p data-i18n="portfolio.cloudscale-fecha">Verano 2023</p>
+                </header>
+                <p data-i18n="portfolio.cloudscale-desc">
+                    Participación en un proyecto de migración a la nube. Configuración de infraestructura
+                    en AWS y desarrollo de scripts de despliegue automatizado.
+                </p>
+                <details>
+                    <summary data-i18n="portfolio.cloudscale-logros-titulo">Logros destacados</summary>
+                    <ul>
+                        <li data-i18n="portfolio.cloudscale-logro1">Configuración de pipelines CI/CD con GitHub Actions.
+                        </li>
+                        <li data-i18n="portfolio.cloudscale-logro2">Documentación técnica de procesos de despliegue.
+                        </li>
+                    </ul>
+                </details>
             </article>
         </section>
     </main>
 
     <footer>
         <p data-i18n="footer.copyright">© 2025 Pelayo Rojas Íñigo</p>
-        <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07">7 de diciembre
+        <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07"
+                data-i18n="footer.fecha">7 de diciembre
                 de 2025</time></p>
         <nav aria-label="Redes sociales">
             <ul>

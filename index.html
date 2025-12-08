@@ -51,7 +51,7 @@
   <output aria-live="polite" aria-label="Resultados de búsqueda" hidden></output>
 
   <main>
-    <section>
+    <section id="sobre-mi">
       <h2 data-i18n="index.sobre-mi">Sobre mí</h2>
       <figure>
         <img src="yo.png" alt="Foto de Pelayo Rojas" data-i18n="index.foto-alt">
@@ -62,7 +62,7 @@
         Oviedo.</p>
     </section>
 
-    <section>
+    <section id="objetivos">
       <h2 data-i18n="index.objetivos">Objetivos profesionales</h2>
       <article>
         <h3 data-i18n="index.software">Software de calidad</h3>
@@ -80,7 +80,7 @@
       </article>
     </section>
 
-    <section>
+    <section id="formacion">
       <h2 data-i18n="formacion.titulo">Formación Académica</h2>
       <article>
         <h3 data-i18n="formacion.master">Máster en Ingeniería Web</h3>
@@ -94,28 +94,33 @@
       </article>
     </section>
 
-    <section>
+    <section id="referencias">
       <h2 data-i18n="referencias.titulo">Referencias</h2>
       <p data-i18n="referencias.nota">Testimonios de personas con las que he colaborado profesionalmente.</p>
       <blockquote>
-        <p>"Pelayo demostró una capacidad excepcional para resolver problemas complejos de forma elegante. Su código
+        <p data-i18n="referencias.ref1">"Pelayo demostró una capacidad excepcional para resolver problemas complejos de
+          forma elegante. Su código
           siempre está bien documentado y sigue las mejores prácticas. Un placer trabajar con él en el proyecto de
           ArkServerApi."</p>
         <a href="mailto:carlos.martinez@game-dev-studios.com">carlos.martinez@game-dev-studios.com</a>
-        <footer>— <cite>Carlos Martínez, Senior Developer en GameDev Studios</cite></footer>
+        <footer>— <cite data-i18n="referencias.ref1-autor">Carlos Martínez, Senior Developer en GameDev Studios</cite>
+        </footer>
       </blockquote>
       <blockquote>
-        <p>"Durante su colaboración en Arquisoft, Pelayo destacó por su iniciativa y su capacidad para aprender
+        <p data-i18n="referencias.ref2">"Durante su colaboración en Arquisoft, Pelayo destacó por su iniciativa y su
+          capacidad para aprender
           rápidamente nuevas tecnologías. Su contribución fue fundamental para cumplir los plazos del proyecto."</p>
         <a href="mailto:laura.garcia@techsolutions.com">laura.garcia@techsolutions.com</a>
-        <footer>— <cite>Laura García, Project Manager en TechSolutions</cite></footer>
+        <footer>— <cite data-i18n="referencias.ref2-autor">Laura García, Project Manager en TechSolutions</cite>
+        </footer>
       </blockquote>
     </section>
   </main>
 
   <footer>
     <p data-i18n="footer.copyright">© 2025 Pelayo Rojas Íñigo</p>
-    <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07">7 de diciembre de
+    <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07"
+        data-i18n="footer.fecha">7 de diciembre de
         2025</time></p>
     <nav aria-label="Redes sociales">
       <ul>

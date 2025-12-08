@@ -58,82 +58,91 @@
     <output aria-live="polite" aria-label="Resultados de búsqueda" hidden></output>
 
     <main>
-        <section>
+        <section id="aficiones-intro">
             <h2 data-i18n="aficiones.titulo">Mis aficiones</h2>
             <p data-i18n="aficiones.intro">Estas son tres actividades que disfruto y que me ayudan a mantener el
                 equilibrio entre la vida
                 académica/profesional y el tiempo personal.</p>
         </section>
 
-        <section>
+        <section id="piraguismo">
             <h3 data-i18n="aficiones.piraguismo">Piragüismo</h3>
             <figure>
-                <img src="piraguismo.jpg" alt="Equipo nacional de piraguismo">
-                <figcaption>Agua, técnica y concentración.</figcaption>
+                <img src="piraguismo.jpg" alt="Equipo nacional de piragüismo" data-i18n="aficiones.piraguismo-alt">
+                <figcaption data-i18n="aficiones.piraguismo-caption">Agua, técnica y concentración.</figcaption>
             </figure>
-            <p>
+            <p data-i18n="aficiones.piraguismo-desc">
                 El piragüismo me permite desconectar y a la vez exigirme físicamente. Disfruto perfeccionando la técnica
                 de paleo
                 y compitiendo en diferentes regatas.
             </p>
             <ul>
-                <li>Qué me aporta: resistencia, equilibrio y conexión con la naturaleza.</li>
-                <li>Cómo lo practico: salidas regulares y ejercicios técnicos.</li>
-                <li>Objetivo: participar en travesías más largas y mejorar tiempos en aguas tranquilas.</li>
+                <li data-i18n="aficiones.piraguismo-li1">Qué me aporta: resistencia, equilibrio y conexión con la
+                    naturaleza.</li>
+                <li data-i18n="aficiones.piraguismo-li2">Cómo lo practico: salidas regulares y ejercicios técnicos.</li>
+                <li data-i18n="aficiones.piraguismo-li3">Objetivo: participar en travesías más largas y mejorar tiempos
+                    en aguas tranquilas.</li>
             </ul>
 
             <article>
-                <h4>La selección española en acción</h4>
-                <p>
+                <h4 data-i18n="aficiones.piraguismo-video-titulo">La selección española en acción</h4>
+                <p data-i18n="aficiones.piraguismo-video-desc">
                     El video muestra a la selección española de piragüismo siendo presentada para los juegos olímpicos
                     de París 2024.
                 </p>
 
                 <video controls>
                     <source src="piraguismo.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de videos.
+                    <span data-i18n="aficiones.piraguismo-video-fallback">Tu navegador no soporta la reproducción de
+                        videos.</span>
                 </video>
             </article>
         </section>
 
-        <section>
+        <section id="motor">
             <h3 data-i18n="aficiones.motor">Deportes de motor</h3>
             <figure>
-                <img src="f1.jpg" alt="Coche de Fórmula 1">
-                <figcaption>Precisión, estrategia y pasión por la ingeniería.</figcaption>
+                <img src="f1.jpg" alt="Coche de Fórmula 1" data-i18n="aficiones.motor-alt">
+                <figcaption data-i18n="aficiones.motor-caption">Precisión, estrategia y pasión por la ingeniería.
+                </figcaption>
             </figure>
-            <p>
+            <p data-i18n="aficiones.motor-desc">
                 Sigo de cerca distintas competiciones y me interesa tanto la conducción como el componente técnico:
                 reglajes, telemetría y evolución de los vehículos.
             </p>
             <ul>
-                <li>Competición favorita: Fórmula 1</li>
-                <li>Qué me gusta analizar: estrategias de parada, neumáticos y gestión de energía.</li>
+                <li data-i18n="aficiones.motor-li1">Competición favorita: Fórmula 1</li>
+                <li data-i18n="aficiones.motor-li2">Qué me gusta analizar: estrategias de parada, neumáticos y gestión
+                    de energía.</li>
             </ul>
         </section>
 
-        <section>
+        <section id="software">
             <h3 data-i18n="aficiones.software">Desarrollar software propio</h3>
             <figure>
-                <img src="ing-sof.png" alt="Icono de desarrollo de software">
-                <figcaption>De la idea al repositorio, con cariño por el detalle.</figcaption>
+                <img src="ing-sof.png" alt="Icono de desarrollo de software" data-i18n="aficiones.software-alt">
+                <figcaption data-i18n="aficiones.software-caption">De la idea al repositorio, con cariño por el detalle.
+                </figcaption>
             </figure>
-            <p>
+            <p data-i18n="aficiones.software-desc">
                 Crear software es mi forma favorita de construir cosas útiles. Me interesan las buenas prácticas,
                 el diseño sencillo y la resolución de problemas reales.
             </p>
             <ul>
-                <li>Enfoque: prototipado rápido, pruebas y documentación clara.</li>
-                <li>Intereses: herramientas para desarrolladores, automatización y aplicaciones web.</li>
-                <li>Más: algunos proyectos están recopilados en el <a href="portfolio.html">portfolio</a>.</li>
+                <li data-i18n="aficiones.software-li1">Enfoque: prototipado rápido, pruebas y documentación clara.</li>
+                <li data-i18n="aficiones.software-li2">Intereses: herramientas para desarrolladores, automatización y
+                    aplicaciones web.</li>
+                <li><span data-i18n="aficiones.software-li3">Más: algunos proyectos están recopilados en el</span> <a
+                        href="portfolio.html">portfolio</a>.</li>
             </ul>
-            <blockquote>"Aprender haciendo, iterar y compartir."</blockquote>
+            <blockquote data-i18n="aficiones.software-quote">"Aprender haciendo, iterar y compartir."</blockquote>
         </section>
     </main>
 
     <footer>
         <p data-i18n="footer.copyright">© 2025 Pelayo Rojas Íñigo</p>
-        <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07">7 de diciembre
+        <p><span data-i18n="footer.actualizado">Última actualización:</span> <time datetime="2025-12-07"
+                data-i18n="footer.fecha">7 de diciembre
                 de 2025</time></p>
         <nav aria-label="Redes sociales">
             <ul>

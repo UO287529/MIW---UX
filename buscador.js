@@ -225,12 +225,32 @@ class Buscador {
     }
 
     /**
+     * Genera un ID slug a partir de un texto
+     * @param {string} texto - Texto a convertir
+     * @param {number} indice - Índice para desambiguación
+     * @returns {string} - ID generado
+     */
+    generarSlug(texto, indice) {
+        var slug = texto
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '') // Quitar acentos
+            .replace(/[^a-z0-9]+/g, '-') // Espacios y símbolos a guiones
+            .replace(/^-+|-+$/g, '') // Quitar guiones al inicio/fin
+            .substring(0, 40); // Limitar longitud
+
+        return slug + '-' + indice;
+    }
+
+    /**
      * Extrae el contenido de texto de un documento HTML
      * @param {string} html - Contenido HTML de la página
-     * @returns {Array} - Array con fragmentos de texto encontrados
+     * @returns {Array} - Array con objetos {texto, textoEN, ancla, i18nKey} encontrados
      */
     extraerContenido(html) {
         var contenido = [];
+        var buscador = this;
+        var contadorSlugs = 0;
 
         // Crear un parser para el HTML
         var parser = new DOMParser();
@@ -242,61 +262,151 @@ class Buscador {
             return contenido;
         }
 
-        // Extraer texto de headings
+        /**
+         * Extrae texto, clave i18n y ancla de un elemento
+         * @param {Element} elemento - Elemento DOM
+         * @returns {Object|null} - {texto, i18nKey, ancla} o null
+         */
+        function extraerElemento(elemento) {
+            var texto = elemento.textContent.trim();
+            if (!texto) return null;
+
+            // Obtener la clave i18n si existe
+            var i18nKey = elemento.getAttribute('data-i18n') || null;
+
+            // Buscar el ancestro más cercano con ID o el heading padre
+            var ancla = buscador.encontrarAncla(elemento, doc);
+
+            // Si no hay ancla existente, generar una basada en el texto
+            if (!ancla) {
+                ancla = buscador.generarSlug(texto, contadorSlugs++);
+            }
+
+            return { texto: texto, i18nKey: i18nKey, ancla: ancla };
+        }
+
+        // Extraer texto de headings (estos son los principales puntos de anclaje)
         var headings = main.querySelectorAll('h1, h2, h3, h4, h5, h6');
         for (var i = 0; i < headings.length; i++) {
-            var texto = headings[i].textContent.trim();
-            if (texto) {
-                contenido.push(texto);
-            }
+            var resultado = extraerElemento(headings[i]);
+            if (resultado) contenido.push(resultado);
         }
 
         // Extraer texto de párrafos
         var parrafos = main.querySelectorAll('p');
         for (var j = 0; j < parrafos.length; j++) {
-            var textoParrafo = parrafos[j].textContent.trim();
-            if (textoParrafo) {
-                contenido.push(textoParrafo);
-            }
+            var resultadoP = extraerElemento(parrafos[j]);
+            if (resultadoP) contenido.push(resultadoP);
         }
 
         // Extraer texto de listas
         var items = main.querySelectorAll('li');
         for (var k = 0; k < items.length; k++) {
-            var textoItem = items[k].textContent.trim();
-            if (textoItem) {
-                contenido.push(textoItem);
-            }
+            var resultadoLi = extraerElemento(items[k]);
+            if (resultadoLi) contenido.push(resultadoLi);
         }
 
         // Extraer texto de blockquotes
         var citas = main.querySelectorAll('blockquote');
         for (var l = 0; l < citas.length; l++) {
-            var textoCita = citas[l].textContent.trim();
-            if (textoCita) {
-                contenido.push(textoCita);
-            }
+            var resultadoCita = extraerElemento(citas[l]);
+            if (resultadoCita) contenido.push(resultadoCita);
         }
 
         // Extraer texto de figcaption
         var captions = main.querySelectorAll('figcaption');
         for (var m = 0; m < captions.length; m++) {
-            var textoCaption = captions[m].textContent.trim();
-            if (textoCaption) {
-                contenido.push(textoCaption);
-            }
+            var resultadoCaption = extraerElemento(captions[m]);
+            if (resultadoCaption) contenido.push(resultadoCaption);
         }
 
         // Extraer texto alt de imágenes
         var imagenes = main.querySelectorAll('img[alt]');
         for (var n = 0; n < imagenes.length; n++) {
-            var textoAlt = imagenes[n].getAttribute('alt').trim();
+            var img = imagenes[n];
+            var textoAlt = img.getAttribute('alt').trim();
+            var i18nKeyAlt = img.getAttribute('data-i18n') || null;
+
             if (textoAlt) {
-                contenido.push(textoAlt);
+                var anclaImg = buscador.encontrarAncla(img, doc);
+                if (!anclaImg) {
+                    anclaImg = buscador.generarSlug(textoAlt, contadorSlugs++);
+                }
+                contenido.push({ texto: textoAlt, i18nKey: i18nKeyAlt, ancla: anclaImg });
             }
         }
 
+        // Extraer texto de summaries (details)
+        var summaries = main.querySelectorAll('summary');
+        for (var o = 0; o < summaries.length; o++) {
+            var resultadoSummary = extraerElemento(summaries[o]);
+            if (resultadoSummary) contenido.push(resultadoSummary);
+        }
+
         return contenido;
+    }
+
+    /**
+     * Obtiene el texto traducido de un elemento del índice
+     * @param {Object} item - Elemento del índice {texto, i18nKey, ancla}
+     * @returns {string} - Texto en el idioma actual
+     */
+    obtenerTextoTraducido(item) {
+        // Si hay una clave i18n y el gestor de idioma está disponible
+        if (item.i18nKey && typeof gestorIdioma !== 'undefined' && gestorIdioma) {
+            var traduccion = gestorIdioma.traducir(item.i18nKey);
+            // Si la traducción existe y no es la misma clave, usarla
+            if (traduccion && traduccion !== item.i18nKey) {
+                return traduccion;
+            }
+        }
+        // Fallback al texto original (español por defecto)
+        return item.texto;
+    }
+
+    /**
+     * Encuentra el ancla más cercana para un elemento
+     * Busca IDs en el elemento o ancestros, o headings hermanos anteriores
+     * @param {Element} elemento - Elemento DOM
+     * @param {Document} doc - Documento
+     * @returns {string|null} - ID del ancla o null
+     */
+    encontrarAncla(elemento, doc) {
+        // Si el elemento tiene ID, usarlo
+        if (elemento.id) {
+            return elemento.id;
+        }
+
+        // Primero buscar la sección o artículo más cercano con ID
+        var seccion = elemento.closest('section[id], article[id]');
+        if (seccion && seccion.id) {
+            return seccion.id;
+        }
+
+        // Buscar en ancestros hasta main
+        var ancestro = elemento.parentElement;
+        while (ancestro && ancestro.tagName !== 'MAIN') {
+            if (ancestro.id) {
+                return ancestro.id;
+            }
+            ancestro = ancestro.parentElement;
+        }
+
+        // Buscar el heading más cercano en la sección
+        seccion = elemento.closest('section, article');
+        if (seccion) {
+            // Si la sección tiene ID, usarlo
+            if (seccion.id) {
+                return seccion.id;
+            }
+            var heading = seccion.querySelector('h1, h2, h3, h4, h5, h6');
+            if (heading && heading.id) {
+                return heading.id;
+            }
+        }
+
+        // No generar slugs dinámicos - devolver null para usar navegación de página
+        return null;
     }
 
     /**
@@ -359,11 +469,13 @@ class Buscador {
 
     /**
      * Busca coincidencias en el índice
+     * Busca en el idioma actualmente seleccionado
      * @param {string} consulta - Texto a buscar
      * @returns {Array} - Resultados encontrados
      */
     buscarEnIndice(consulta) {
         var resultados = [];
+        var buscador = this;
 
         for (var i = 0; i < this.paginas.length; i++) {
             var pagina = this.paginas[i];
@@ -377,11 +489,18 @@ class Buscador {
             var idiomaActual = (typeof gestorIdioma !== 'undefined' && gestorIdioma) ? gestorIdioma.idiomaActual : 'es';
             var titulo = idiomaActual === 'en' ? pagina.tituloEN : pagina.titulo;
 
-            // Buscar en el contenido
+            // Buscar en el contenido (usando el texto traducido al idioma actual)
             for (var j = 0; j < contenido.length; j++) {
-                var texto = contenido[j];
+                var item = contenido[j];
+                // Obtener el texto en el idioma actual
+                var texto = buscador.obtenerTextoTraducido(item);
+                var ancla = item.ancla || null;
+
                 if (texto.toLowerCase().indexOf(consulta) !== -1) {
-                    coincidencias.push(texto);
+                    coincidencias.push({
+                        texto: texto,
+                        ancla: ancla
+                    });
                 }
             }
 
@@ -441,15 +560,19 @@ class Buscador {
             var resultado = resultados[i];
             var item = document.createElement('li');
 
-            // Enlace a la página
+            // Obtener la primera coincidencia para el enlace
+            var primeraCoincidencia = resultado.coincidencias[0];
+            var ancla = primeraCoincidencia.ancla;
+
+            // Enlace a la página con ancla
             var enlace = document.createElement('a');
-            enlace.href = resultado.pagina;
+            enlace.href = resultado.pagina + (ancla ? '#' + ancla : '');
             enlace.textContent = resultado.titulo;
             item.appendChild(enlace);
 
             // Mostrar primera coincidencia con contexto
             var extracto = document.createElement('p');
-            var textoCoincidencia = resultado.coincidencias[0];
+            var textoCoincidencia = primeraCoincidencia.texto;
 
             // Limitar longitud del extracto
             if (textoCoincidencia.length > 100) {
@@ -464,7 +587,35 @@ class Buscador {
             // Resaltar término buscado
             var textoResaltado = this.resaltarTermino(textoCoincidencia, consulta);
             extracto.innerHTML = textoResaltado;
-            item.appendChild(extracto);
+
+            // Si hay más coincidencias, mostrar subenlaces
+            if (resultado.coincidencias.length > 1) {
+                var sublista = document.createElement('ul');
+                sublista.className = 'resultados-sublista';
+
+                for (var j = 1; j < Math.min(resultado.coincidencias.length, 4); j++) {
+                    var subitem = document.createElement('li');
+                    var subenlace = document.createElement('a');
+                    var subCoincidencia = resultado.coincidencias[j];
+
+                    subenlace.href = resultado.pagina + (subCoincidencia.ancla ? '#' + subCoincidencia.ancla : '');
+
+                    // Texto resumido para el subenlace
+                    var subTexto = subCoincidencia.texto;
+                    if (subTexto.length > 60) {
+                        subTexto = subTexto.substring(0, 60) + '...';
+                    }
+                    subenlace.innerHTML = this.resaltarTermino(subTexto, consulta);
+
+                    subitem.appendChild(subenlace);
+                    sublista.appendChild(subitem);
+                }
+
+                item.appendChild(extracto);
+                item.appendChild(sublista);
+            } else {
+                item.appendChild(extracto);
+            }
 
             lista.appendChild(item);
         }
@@ -506,7 +657,102 @@ class Buscador {
 // Instancia global del buscador
 var buscador = null;
 
+/**
+ * Genera un slug desde texto (función global para resolución de anclas)
+ */
+function generarSlugGlobal(texto) {
+    return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .substring(0, 40);
+}
+
+/**
+ * Resuelve anclas al cargar la página
+ * Busca elementos que coincidan con el hash y les asigna IDs
+ */
+function resolverAnclas() {
+    var hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+
+    var anclaId = hash.substring(1); // Quitar el #
+
+    // Si ya existe un elemento con ese ID, scrollear y resaltar
+    if (document.getElementById(anclaId)) {
+        var elemento = document.getElementById(anclaId);
+        elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        resaltarElemento(elemento);
+        return;
+    }
+
+    // Extraer el slug base (quitar el sufijo -N si existe)
+    var slugBase = anclaId.replace(/-\d+$/, '');
+
+    // Buscar el elemento que debería tener esta ancla
+    var main = document.querySelector('main');
+    if (!main) return;
+
+    // Buscar en todos los elementos de texto
+    var selectores = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption';
+    var elementos = main.querySelectorAll(selectores);
+
+    for (var i = 0; i < elementos.length; i++) {
+        var elem = elementos[i];
+        var texto = elem.textContent.trim();
+        if (!texto) continue;
+
+        var slugElemento = generarSlugGlobal(texto);
+
+        // Comparar el slug base con el slug generado del elemento
+        if (slugElemento === slugBase || slugBase.startsWith(slugElemento) || slugElemento.startsWith(slugBase)) {
+            // Encontramos el elemento, asignarle ID y scrollear
+            elem.id = anclaId;
+            elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resaltarElemento(elem);
+            return;
+        }
+    }
+
+    // También buscar en alt de imágenes
+    var imagenes = main.querySelectorAll('img[alt]');
+    for (var j = 0; j < imagenes.length; j++) {
+        var img = imagenes[j];
+        var altTexto = img.getAttribute('alt').trim();
+        if (!altTexto) continue;
+
+        var slugImg = generarSlugGlobal(altTexto);
+
+        if (slugImg === slugBase || slugBase.startsWith(slugImg) || slugImg.startsWith(slugBase)) {
+            // Scrollear a la imagen o su contenedor
+            var contenedor = img.closest('figure') || img;
+            contenedor.id = anclaId;
+            contenedor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resaltarElemento(contenedor);
+            return;
+        }
+    }
+}
+
+/**
+ * Resalta temporalmente un elemento para indicar que es el resultado
+ */
+function resaltarElemento(elemento) {
+    elemento.classList.add('resultado-encontrado');
+    setTimeout(function () {
+        elemento.classList.remove('resultado-encontrado');
+    }, 3000);
+}
+
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function () {
     buscador = new Buscador();
+
+    // Resolver anclas después de un pequeño delay para asegurar que el DOM está listo
+    setTimeout(resolverAnclas, 100);
 });
+
+// También resolver al cambiar el hash (navegación interna)
+window.addEventListener('hashchange', resolverAnclas);

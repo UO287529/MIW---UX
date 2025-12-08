@@ -551,3 +551,54 @@ button:hover {
 [hidden] {
     display: none;
 }
+
+/* Especificidad: 010 */
+.resultado-encontrado {
+    animation: resaltar-resultado 3s ease-out;
+    outline: 0.25rem solid #10b981;
+    outline-offset: 0.25rem;
+    border-radius: 0.5rem;
+}
+
+@keyframes resaltar-resultado {
+    0% {
+        background-color: #fef3c7;
+        outline-color: #f59e0b;
+    }
+
+    50% {
+        background-color: #fef9c3;
+        outline-color: #10b981;
+    }
+
+    100% {
+        background-color: transparent;
+        outline-color: transparent;
+    }
+}
+
+/* Especificidad: 011 */
+output .resultados-sublista {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    border-left: 0.125rem solid #10b98140;
+    font-size: 0.85rem;
+}
+
+/* Especificidad: 012 */
+output .resultados-sublista li {
+    background: transparent;
+    border: none;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Especificidad: 012 */
+output .resultados-sublista a {
+    font-weight: 500;
+    color: #64748b;
+}
+
+/* Especificidad: 022 */
+output .resultados-sublista a:hover {
+    color: #2563eb;
+}
