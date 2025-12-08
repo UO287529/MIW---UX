@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles.css">
   <meta name="description"
     content="Página de contacto de Pelayo Rojas Íñigo con formulario y correos electrónicos disponibles.">
-  <script type="text/javascript">
+  <script>
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
       t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
@@ -73,13 +73,13 @@
       <p data-i18n="contacto.formulario">En su defecto, puedes utilizar el siguiente formulario de contacto:</p>
       <form action="#" method="POST" novalidate>
         <label for="name" data-i18n="contacto.nombre">Nombre:</label>
-        <input type="text" id="name" name="name" required aria-describedby="name-help" autocomplete="name">
+        <input type="text" id="name" name="name" required autocomplete="name">
 
         <label for="email" data-i18n="contacto.email">Correo electrónico:</label>
-        <input type="email" id="email" name="_replyto" required aria-describedby="email-help" autocomplete="email">
+        <input type="email" id="email" name="_replyto" required autocomplete="email">
 
         <label for="message" data-i18n="contacto.mensaje">Mensaje:</label>
-        <textarea id="message" name="message" rows="5" required aria-describedby="message-help"></textarea>
+        <textarea id="message" name="message" rows="5" required></textarea>
 
         <button type="submit" data-i18n="contacto.enviar">Enviar</button>
       </form>
