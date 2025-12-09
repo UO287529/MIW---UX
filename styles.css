@@ -17,6 +17,7 @@ body {
     align-items: stretch;
     line-height: 1.7;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Especificidad: 001, 001, 001, 001, 001 */
@@ -564,19 +565,36 @@ button:hover {
     }
 
     /* Especificidad: 001 */
+    header,
+    nav,
+    main,
+    aside,
+    footer,
+    /* Especificidad 012 */
+    header+nav[aria-label],
+    output {
+        width: min(100% - 1.5rem, 68rem);
+    }
+
+    /* Especificidad: 001 */
     main {
-        padding: 2rem;
-        gap: 2rem;
+        padding: 1.25rem;
+        gap: 1.5rem;
     }
 
     /* Especificidad: 001 */
     section {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     /* Especificidad: 001 */
     aside {
-        padding: 2rem;
+        padding: 1.25rem;
+    }
+
+    /* Especificidad: 012 */
+    header+nav[aria-label] {
+        margin: -0.5rem auto 1rem auto;
     }
 }
 
