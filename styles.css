@@ -657,3 +657,67 @@ output .resultados-sublista a:hover {
     color: #2563eb;
     /* Advertencia comprobada: hereda background de output li */
 }
+
+/* --- Estilos del Mapa de Página (TOC) --- */
+
+/* Especificidad: 002 */
+/* Reset completo para que no parezca el navbar principal */
+aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Vertical */
+    gap: 0.5rem;
+    
+    /* Reset heredados */
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    max-width: none;
+}
+
+/* Sublistas indentadas */
+aside nav ul ul {
+    padding-left: 1rem;
+    margin-top: 0.25rem;
+    border-left: 2px solid #e5e7eb;
+    gap: 0.25rem;
+}
+
+/* Enlaces estilo lista normal */
+aside nav a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 0.95rem;
+    transition: color 200ms ease, transform 200ms ease;
+    display: block;
+    
+    /* Reset heredados */
+    font-weight: normal;
+    padding: 0.25rem 0;
+    border-radius: 0;
+    background: none;
+}
+
+aside nav a:hover,
+aside nav a:focus {
+    color: #2563eb;
+    text-decoration: underline;
+    
+    /* Efecto sutil de desplazamiento sin botones */
+    transform: translateX(0.25rem);
+    background: none;
+    box-shadow: none;
+}
+
+/* Título */
+aside h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #1f2933;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}

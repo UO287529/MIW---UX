@@ -35,6 +35,9 @@ class GestorIdioma {
                 // Migas de pan
                 'migas.inicio': 'Inicio',
 
+                // Mapa del sitio
+                'mapa.titulo': 'Índice de contenido',
+
                 // Index - Sobre mí
                 'index.sobre-mi': 'Sobre mí',
                 'index.foto-alt': 'Foto de Pelayo Rojas',
@@ -203,6 +206,9 @@ class GestorIdioma {
 
                 // Breadcrumbs
                 'migas.inicio': 'Home',
+
+                // Site Map
+                'mapa.titulo': 'Table of Contents',
 
                 // Index - About me
                 'index.sobre-mi': 'About me',
